@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// [RequireComponent Rigidbody2D]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Movement : MonoBehaviour
 {
+  private Rigidbody2D rigidbody2d;
+  private Vector2 movement;
+  [SerializeField] private float movementSpeed;
 
-  public Rigidbody2D rb;
-  public float movementSpeed = 12f;
-  Vector2 movement;
+  private void Awake()
+  {
+    rigidbody2d = GetComponent<Rigidbody2D>();
+  }
 
   void Update()
   {
@@ -18,6 +22,6 @@ public class Movement : MonoBehaviour
 
   void FixedUpdate()
   {
-    rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
+    rigidbody2d.MovePosition(rigidbody2d.position + movement * movementSpeed * Time.fixedDeltaTime);
   }
 }
