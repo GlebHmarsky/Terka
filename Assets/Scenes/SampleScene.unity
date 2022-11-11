@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe206f5e9b7630445a5465c103d5cc43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 12
+  movementSpeed: 5
 --- !u!50 &1443590910
 Rigidbody2D:
   serializedVersion: 4
@@ -651,7 +651,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.37, y: 0.6}
   m_Direction: 0
 --- !u!1 &1635448584
 GameObject:
