@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
 
   void FixedUpdate()
   {
-    rigidbody2d.MovePosition(rigidbody2d.position + (movement * movementSpeed * Time.fixedDeltaTime));
+    // movement.normalized - for diagonal movement will have the same speed as well as horz. or vert.
+    rigidbody2d.MovePosition(rigidbody2d.position + (movement.normalized * movementSpeed * Time.fixedDeltaTime));
   }
 }
