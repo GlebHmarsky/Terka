@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
   }
 
   void Update()
-  {
+  {    
     //We can use just GetAxis, but player move like on a butter with more slide effect
     movement.x = Input.GetAxisRaw("Horizontal");
     movement.y = Input.GetAxisRaw("Vertical");
