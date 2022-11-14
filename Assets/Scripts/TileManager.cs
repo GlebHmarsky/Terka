@@ -23,6 +23,18 @@ public class TileManager : MonoBehaviour
     }
   }
 
+  public bool IsInteractable(Vector3Int position)
+  {
+    TileBase tile = interactableTilemap.GetTile(position);
+    if (tile)
+    {
+      if (tile.name == "interactable_hidden")
+      {
+        return true;
+      };
+    }
+    return false;
+  }
 
   // TODO: utils stuff, should move somewhere else
   List<Vector3Int> getAllTilesPosition(Tilemap tilemap)
@@ -36,5 +48,4 @@ public class TileManager : MonoBehaviour
 
     return tileWorldLocations;
   }
-
 }
