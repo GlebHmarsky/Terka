@@ -8,6 +8,7 @@ public class TileManager : MonoBehaviour
 
   [SerializeField] private Tilemap interactableTilemap;
   [SerializeField] private Tile hiddenTile;
+  [SerializeField] private Tile hoedTile;
 
   /* TODO: на деле эта штука нужная чтобы просто скрыть тайлы за сценой. 
     Зачем? Чтобы мы видели ГДЕ можно взаимодействовать, а игрок понял это другим путём
@@ -34,6 +35,10 @@ public class TileManager : MonoBehaviour
       };
     }
     return false;
+  }
+  public void SetInteracted(Vector3Int position)
+  {
+    interactableTilemap.SetTile(position, hoedTile);
   }
 
   // TODO: utils stuff, should move somewhere else

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,11 @@ public class PlayerInteract : MonoBehaviour
   {
     if (Input.GetKeyDown(KeyCode.Space))
     {
-      Vector3Int position = new Vector3Int((int)(transform.position.x), (int)(transform.position.y), 0);
-
-      if (GameManager.instance.tileManager.IsInteractable(position))
+      Vector3Int position = new Vector3Int((int)Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.y), 0);
+      TileManager tl = GameManager.instance.tileManager;
+      if (tl.IsInteractable(position))
       {
-        Debug.Log("TIle isInteractable");
+        tl.SetInteracted(position);
       }
     }
   }
