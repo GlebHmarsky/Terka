@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
   private Rigidbody2D rigidbody2d;
   private Vector2 movement;
   [SerializeField] private float movementSpeed;
-  [SerializeField] Animator animator;
+  [SerializeField] private Animator animator;
 
 
   private void Awake()
@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
   }
 
   void Update()
-  {    
+  {
     //We can use just GetAxis, but player move like on a butter with more slide effect
     movement.x = Input.GetAxisRaw("Horizontal");
     movement.y = Input.GetAxisRaw("Vertical");

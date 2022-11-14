@@ -9,7 +9,12 @@ public class PlayerInteract : MonoBehaviour
   {
     if (Input.GetKeyDown(KeyCode.Space))
     {
-      Vector3Int position = new Vector3Int((int)Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.y), 0);
+      int x = Mathf.CeilToInt(Mathf.Abs(transform.position.x)) * (int)Mathf.Sign(transform.position.x);
+      int y = Mathf.CeilToInt(Mathf.Abs(transform.position.y)) * (int)Mathf.Sign(transform.position.y);
+
+      Debug.Log($"{x},{y}; {transform.position.x}, {transform.position.y}");
+
+      Vector3Int position = new Vector3Int(x, y, 0);
       TileManager tl = GameManager.instance.tileManager;
       if (tl.IsInteractable(position))
       {
