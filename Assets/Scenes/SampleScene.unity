@@ -19600,7 +19600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableTilemap: {fileID: 1128065654}
   hiddenTile: {fileID: 11400000, guid: c00473fa35a7c4243a5125fc7bdc6fe1, type: 2}
-  hoedTile: {fileID: 11400000, guid: 7a0984e1f5de87a469d13a8b9bd2f29f, type: 2}
+  hoedTile: {fileID: 11400000, guid: 6572ea5b716a6584ea2bb8678239f729, type: 2}
 --- !u!4 &1457714036
 Transform:
   m_ObjectHideFlags: 0
