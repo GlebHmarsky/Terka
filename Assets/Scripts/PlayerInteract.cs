@@ -25,7 +25,7 @@ public class PlayerInteract : MonoBehaviour
     if (tl.IsInteractable(position))
     {
       tl.SetInteracted(position);
-      plantManager.CreatePlant(x,y,$"Test {x}{y}");
+      plantManager.CreatePlant(x, y, $"Test {x}{y}");
     }
   }
 }
