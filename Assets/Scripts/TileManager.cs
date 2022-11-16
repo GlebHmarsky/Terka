@@ -36,6 +36,7 @@ public class TileManager : MonoBehaviour
     }
     return false;
   }
+  
   public void SetInteracted(Vector3Int position)
   {
     interactableTilemap.SetTile(position, hoedTile);
