@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     }
 
     DontDestroyOnLoad(this.gameObject);
-
-    // tileManager = GetComponent<TileManager>();
   }
+  
 }
