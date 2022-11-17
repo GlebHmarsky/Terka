@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour, IPlaceableObject
 {
-  public int posX { get; set; }
-  public int posY { get; set; }
+  public Vector2Int position { get; set; }
   public string plantName;
 
-  public Plant(int posX, int posY, string name)
+  public Plant(Vector2Int position, string name)
   {
-    this.posX = posX;
-    this.posY = posY;
+    this.position = position;
     this.plantName = name;
   }
-
-
 }

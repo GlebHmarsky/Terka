@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Plowed : MonoBehaviour, IPlaceableObject
 {
-  public int posX { get; set; }
+  public Vector2Int position { get; set; }
   public int posY { get; set; }
 
-  public Plowed(int posX, int posY, string name)
+  public Plowed(Vector2Int position)
   {
-    this.posX = posX;
-    this.posY = posY;
+    this.position = position;
   }
-
 }

@@ -21,22 +21,21 @@ public class PlayerInteract : MonoBehaviour
     int y = Mathf.FloorToInt(transform.position.y);
 
     Vector2Int position2d = new Vector2Int(x, y);
+ 
     Vector3Int position3d = (Vector3Int)position2d;
-    Debug.Log(position3d);
     TileManager tl = GameManager.instance.tileManager;
     if (tl.IsInteractable(position3d))
     {
-      // tl.SetInteracted(position3d);
-      if (plantManager.isPlowed(x, y))
+      if (plantManager.isPlowed(position2d))
       {
-        if (!plantManager.isOccupied(x, y))
+        if (!plantManager.isOccupied(position2d))
         {
-          plantManager.CreatePlant(x, y, $"Test {x} {y}");
+          plantManager.CreatePlant(position2d, $"Test {position2d}");
         }
       }
       else
       {
-        plantManager.CreatePlowed(x, y);
+        plantManager.CreatePlowed(position2d);
       }
     }
   }

@@ -1,5 +1,6 @@
+using UnityEngine;
+
 public interface IPlaceableObject
 {
-  public int posX { get; set; }
-  public int posY { get; set; }
+  public Vector2Int position { get; set; }
 }

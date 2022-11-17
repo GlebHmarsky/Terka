@@ -17,43 +17,39 @@ public class PlantManager : MonoBehaviour
     plowed = new List<GameObject>();
   }
 
-  public void CreatePlant(int posX, int posY, string name)
+  public void CreatePlant(Vector2Int position, string name)
   {
-    GameObject plantGameObject = Instantiate(plantPrefab, new Vector3(posX + 0.5f, posY + 0.5f, 0), Quaternion.identity);
+    GameObject plantGameObject = Instantiate(plantPrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
     plants.Add(plantGameObject);
 
     Plant plant = plantGameObject.GetComponent<Plant>();
     plant.plantName = name;
-    plant.posX = posX;
-    plant.posY = posY;
-
+    plant.position = position;
   }
-  public void CreatePlowed(int posX, int posY)
+  public void CreatePlowed(Vector2Int position)
   {
-    GameObject plowedGameObject = Instantiate(plowedPrefab, new Vector3(posX + 0.5f, posY + 0.5f, 0), Quaternion.identity);
+    GameObject plowedGameObject = Instantiate(plowedPrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
     this.plowed.Add(plowedGameObject);
 
     Plowed plowed = plowedGameObject.GetComponent<Plowed>();
-    plowed.posX = posX;
-    plowed.posY = posY;
-
+    plowed.position = position;
   }
 
-  public bool isOccupied(int posX, int posY)
+  public bool isOccupied(Vector2Int position)
   {
-    GameObject obj = plants.Find(x => FindPlaceableObject(x, posX, posY));
+    GameObject obj = plants.Find(x => FindPlaceableObject(x, position));
     return !(obj is null);
   }
-  public bool isPlowed(int posX, int posY)
+  public bool isPlowed(Vector2Int position)
   {
-    GameObject obj = plowed.Find(x => FindPlaceableObject(x, posX, posY));
+    GameObject obj = plowed.Find(x => FindPlaceableObject(x, position));
     return !(obj is null);
   }
 
-  private bool FindPlaceableObject(GameObject obj, int posX, int posY)
+  private bool FindPlaceableObject(GameObject obj, Vector2Int position)
   {
     IPlaceableObject placeableObject = obj.GetComponent<IPlaceableObject>();
-    return placeableObject.posX == posX && placeableObject.posY == posY;
+    return placeableObject.position == position;
   }
 
 }
