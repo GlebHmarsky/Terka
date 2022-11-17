@@ -29,14 +29,11 @@ public class TileManager : MonoBehaviour
     TileBase tile = interactableTilemap.GetTile(position);
     if (tile)
     {
-      if (tile.name == "interactable_hidden")
-      {
-        return true;
-      };
+      return true;
     }
     return false;
   }
-  
+
   public void SetInteracted(Vector3Int position)
   {
     interactableTilemap.SetTile(position, hoedTile);
