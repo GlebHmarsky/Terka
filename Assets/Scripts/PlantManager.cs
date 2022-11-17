@@ -28,7 +28,7 @@ public class PlantManager : MonoBehaviour
     plant.posY = posY;
 
   }
-  public void CreatePlowed(int posX, int posY, string name)
+  public void CreatePlowed(int posX, int posY)
   {
     GameObject plowedGameObject = Instantiate(plowedPrefab, new Vector3(posX + 0.5f, posY + 0.5f, 0), Quaternion.identity);
     this.plowed.Add(plowedGameObject);
@@ -38,4 +38,22 @@ public class PlantManager : MonoBehaviour
     plowed.posY = posY;
 
   }
+
+  public bool isOccupied(int posX, int posY)
+  {
+    GameObject obj = plants.Find(x => FindPlaceableObject(x, posX, posY));
+    return !(obj is null);
+  }
+  public bool isPlowed(int posX, int posY)
+  {
+    GameObject obj = plowed.Find(x => FindPlaceableObject(x, posX, posY));
+    return !(obj is null);
+  }
+
+  private bool FindPlaceableObject(GameObject obj, int posX, int posY)
+  {
+    IPlaceableObject placeableObject = obj.GetComponent<IPlaceableObject>();
+    return placeableObject.posX == posX && placeableObject.posY == posY;
+  }
+
 }
