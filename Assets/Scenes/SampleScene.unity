@@ -20008,5 +20008,6 @@ PrefabInstance:
       propertyPath: plantManager
       value: 
       objectReference: {fileID: 685154194}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8191344807969496347, guid: 85a5c175239fdf8499e71ec7fdff6422, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 85a5c175239fdf8499e71ec7fdff6422, type: 3}

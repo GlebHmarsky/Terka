@@ -10,7 +10,12 @@ public class Collectable : MonoBehaviour
   {
     if (other.tag == "Player")
     {
-      Destroy(gameObject);
+      PlayerManager playerManager = other.GetComponent<PlayerManager>();
+      if (playerManager)
+      {
+        playerManager.inventory.Add(type, 1);
+        Destroy(gameObject);
+      }
     }
   }
 }
