@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class Inventory
   public class Slot
   {
     public CollectableType type;
+    public Sprite icon;
     public int count;
     public int maxAllowed;
 
@@ -24,6 +26,13 @@ public class Inventory
       return count != maxAllowed;
     }
 
+    public void AddItem(Collectable item)
+    {
+      type = item.type;
+      icon = item.icon;
+      count++;
+    }
+
   }
 
   public List<Slot> slots = new List<Slot>();
@@ -36,20 +45,21 @@ public class Inventory
     }
   }
 
-  // TODO: make bool for adding 
-  public void Add(CollectableType type, int amount)
+
+
+  // TODO: make bool for adding (if there is no place to add we should not add it and return false - flag for not added)
+  public void Add(Collectable item)
   {
     foreach (var slot in slots)
     {
-      if (slot.type == type && slot.CanBeAdded())
+      if (slot.type == item.type && slot.CanBeAdded())
       {
-        slot.count++;
+        slot.AddItem(item);
         return;
       }
       else if (slot.type == CollectableType.NONE)
       {
-        slot.type = type;
-        slot.count++;
+        slot.AddItem(item);
         return;
       }
     }
