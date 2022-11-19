@@ -384,6 +384,7 @@ MonoBehaviour:
   itemIcon: {fileID: 7499444348593164587}
   quantityText: {fileID: 7499444348671564613}
   aspectRatioFitter: {fileID: 2211545533429435314}
+  highlight: {fileID: 294539518257979097}
 --- !u!1 &7499444348593164585
 GameObject:
   m_ObjectHideFlags: 0
