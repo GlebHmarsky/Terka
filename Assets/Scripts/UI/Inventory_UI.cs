@@ -11,8 +11,7 @@ public class Inventory_UI : MonoBehaviour
   [SerializeField] private GameObject slotsParent;
   public List<Slot_UI> slots;
 
-  // public Button btn;
-  // btn.onClick.AddListener(() => Remove(0));
+  private Slot_UI draggedSlot;
 
   void Start()
   {
@@ -24,7 +23,7 @@ public class Inventory_UI : MonoBehaviour
   
   TODO: Может сделать на эвент изменения размера инвентаря?
     */
-    InitiateInventoryUI();
+    // InitiateInventoryUI();
     Refresh();
   }
 
@@ -95,4 +94,26 @@ public class Inventory_UI : MonoBehaviour
       Refresh();
     }
   }
+
+  public void SlotBeginDrag(Slot_UI slot)
+  {
+    draggedSlot = slot;
+    Debug.Log($"Begin drag: {draggedSlot.name}");
+  }
+
+  public void SlotDrag()
+  {
+    Debug.Log($"Dragging: {draggedSlot.name}");
+  }
+
+  public void SlotEndDrag()
+  {
+    Debug.Log($"End Drag: {draggedSlot.name}");
+  }
+
+  public void SlotDrop(Slot_UI slot)
+  {
+    Debug.Log($"Drop: {draggedSlot.name} on {slot.name}");
+  }
+
 }
