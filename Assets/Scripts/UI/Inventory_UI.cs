@@ -90,7 +90,12 @@ public class Inventory_UI : MonoBehaviour
 
   public void Remove(int slotID)
   {
-    playerManager.inventory.Remove(slotID);
-    Refresh();
+    Collectable itemToDrop = GameManager.instance.itemManager.GetItemByType(playerManager.inventory.slots[slotID].type);
+    if (itemToDrop)
+    {
+      playerManager.DropItem(itemToDrop);
+      playerManager.inventory.Remove(slotID);
+      Refresh();
+    }
   }
 }

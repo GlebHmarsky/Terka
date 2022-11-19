@@ -20317,6 +20317,7 @@ GameObject:
   - component: {fileID: 1457714036}
   - component: {fileID: 1457714037}
   - component: {fileID: 1457714035}
+  - component: {fileID: 1457714038}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -20366,6 +20367,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileManager: {fileID: 1457714035}
+  itemManager: {fileID: 1457714038}
+--- !u!114 &1457714038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457714034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d49e13933ded7a42a30c963ff643532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectableItems:
+  - {fileID: 1345330685590105316, guid: c73c7655db45d9f4facd3510add03e97, type: 3}
 --- !u!1 &1598987441
 GameObject:
   m_ObjectHideFlags: 0
