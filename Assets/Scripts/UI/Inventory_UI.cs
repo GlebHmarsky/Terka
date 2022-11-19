@@ -75,18 +75,15 @@ public class Inventory_UI : MonoBehaviour
   public void Refresh()
   {
     Inventory playerInventory = playerManager.inventory;
-    if (slots.Count == playerInventory.slots.Count)
+    for (int i = 0; i < slots.Count; i++)
     {
-      for (int i = 0; i < slots.Count; i++)
+      if (playerInventory.slots[i].type != CollectableType.NONE)
       {
-        if (playerInventory.slots[i].type != CollectableType.NONE)
-        {
-          slots[i].SetItem(playerInventory.slots[i]);
-        }
-        else
-        {
-          slots[i].SetEmpty();
-        }
+        slots[i].SetItem(playerInventory.slots[i]);
+      }
+      else
+      {
+        slots[i].SetEmpty();
       }
     }
   }
