@@ -7,7 +7,7 @@ public class Inventory_UI : MonoBehaviour
 {
   public GameObject inventoryPanel;
   public PlayerManager playerManager;
-  [SerializeField] private GameObject slotPrefab;
+  [SerializeField] private Slot_UI slotPrefab;
   [SerializeField] private GameObject slotsParent;
   public List<Slot_UI> slots;
 
@@ -42,12 +42,9 @@ public class Inventory_UI : MonoBehaviour
     int inventoryLength = playerInventory.slots.Count;
     for (int i = 0; i < inventoryLength; i++)
     {
-      GameObject slotUI = Instantiate(slotPrefab, slotsParent.transform);
-      Slot_UI slot_UI = slotUI.GetComponent<Slot_UI>();
-      if (slot_UI)
-      {
-        slots.Add(slot_UI);
-      }
+      Slot_UI slotUI = Instantiate(slotPrefab, slotsParent.transform);
+      slots.Add(slotUI);
+
       Button button = slotUI.GetComponentInChildren<Button>();
       if (button)
       {
