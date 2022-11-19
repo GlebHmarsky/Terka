@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-  // FIXME: Static - bad, must be refactored somehow 
   public static GameManager instance;
+
   public TileManager tileManager;
+  public ItemManager itemManager;
+
   void Awake()
   {
 
@@ -21,5 +23,5 @@ public class GameManager : MonoBehaviour
 
     DontDestroyOnLoad(this.gameObject);
   }
-  
+
 }
