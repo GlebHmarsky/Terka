@@ -1,21 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Toolbar_UI : MonoBehaviour
 {
+  [SerializeField] private Slot_UI slotPrefab;
+  [SerializeField] private GameObject slotsParent;
   [SerializeField] private List<Slot_UI> toolbarSlots = new List<Slot_UI>();
 
   private Slot_UI selectedSlot;
 
   void Start()
   {
+    InitiateToolbarUI(7);
     SelectSlot(0);
   }
 
   private void Update()
   {
     CheckAlphaNumericKeys();
+  }
+
+  private void InitiateToolbarUI(int toolbarSize)
+  {
+    int inventoryLength = toolbarSize;
+    for (int i = 0; i < inventoryLength; i++)
+    {
+      Slot_UI slotUI = Instantiate(slotPrefab, slotsParent.transform);
+      toolbarSlots.Add(slotUI);
+
+      Transform keyTextTransform = slotUI.transform.GetChild(2);
+      if (keyTextTransform)
+      {
+        TextMeshPro text = keyTextTransform.GetComponent<TextMeshPro>();
+        if (text)
+        {
+          text.text = $"{i + 1}";
+        }
+      }
+    }
   }
 
   public void SelectSlot(int index)
