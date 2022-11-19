@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 7499444348349946295}
   - component: {fileID: 3711981283202944485}
   m_Layer: 5
-  m_Name: Slot
+  m_Name: InventorySlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
