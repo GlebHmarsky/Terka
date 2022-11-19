@@ -94,10 +94,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5891833759024868156}
   - component: {fileID: 1345330685590105316}
+  - component: {fileID: 1611466370290554018}
   - component: {fileID: 2304069674030334792}
   - component: {fileID: 4831763522382434926}
   m_Layer: 0
-  m_Name: Collectable
+  m_Name: Yellow Crate Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,8 +132,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e85c3071c00bc44c80c4fdf31e1ca1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  icon: {fileID: -1983610326, guid: 6c49fee69048a844e93f52b36f7c003b, type: 3}
+--- !u!114 &1611466370290554018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3467625913996707164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb0fbed9eacaddb4f916fc54002a56a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: ed11240b0bca2e94c8d90b6bbf0843c4, type: 2}
   rb2d: {fileID: 0}
 --- !u!61 &2304069674030334792
 BoxCollider2D:
