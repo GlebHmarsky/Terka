@@ -11,7 +11,15 @@ public class Inventory_UI : MonoBehaviour
   [SerializeField] private GameObject slotsParent;
   public List<Slot_UI> slots;
 
+  [SerializeField] private Canvas canvas;
+
   private Slot_UI draggedSlot;
+  private Image draggedIcon;
+
+  private void Awake()
+  {
+    canvas = FindObjectOfType<Canvas>();
+  }
 
   void Start()
   {
@@ -44,13 +52,13 @@ public class Inventory_UI : MonoBehaviour
       Slot_UI slotUI = Instantiate(slotPrefab, slotsParent.transform);
       slots.Add(slotUI);
 
-      Button button = slotUI.GetComponentInChildren<Button>();
-      if (button)
-      {
-        // We must copy element 'cause closure (замыкание)
-        int copy = i;
-        button.onClick.AddListener(() => Remove(copy));
-      }
+      // Button button = slotUI.GetComponentInChildren<Button>();
+      // if (button)
+      // {
+      //   // We must copy element 'cause closure (замыкание)
+      //   int copy = i;
+      //   button.onClick.AddListener(() => Remove(copy));
+      // }
     }
   }
 
@@ -84,31 +92,44 @@ public class Inventory_UI : MonoBehaviour
     }
   }
 
-  public void Remove(int slotID)
+  public void Remove()
   {
-    Item itemToDrop = GameManager.instance.itemManager.GetItemByName(playerManager.inventory.slots[slotID].itemName);
+    Item itemToDrop = GameManager.instance.itemManager.GetItemByName(playerManager.inventory.slots[draggedSlot.slotID].itemName);
     if (itemToDrop)
     {
       playerManager.DropItem(itemToDrop);
-      playerManager.inventory.Remove(slotID);
+      playerManager.inventory.Remove(draggedSlot.slotID);
       Refresh();
     }
+    draggedSlot = null;
   }
 
   public void SlotBeginDrag(Slot_UI slot)
   {
     draggedSlot = slot;
+
+    draggedIcon = Instantiate(draggedSlot.itemIcon, canvas.transform);
+
+    Destroy(draggedIcon.GetComponent<AspectRatioFitter>());
+    draggedIcon.raycastTarget = false;
+    draggedIcon.SetNativeSize();
+    draggedIcon.rectTransform.anchorMin = new Vector2(0, 0);
+    draggedIcon.rectTransform.sizeDelta = new Vector2(50f, 50f);
+
+    MoveToMousePosition(draggedIcon.gameObject);
     Debug.Log($"Begin drag: {draggedSlot.name}");
   }
 
   public void SlotDrag()
   {
+    MoveToMousePosition(draggedIcon.gameObject);
     Debug.Log($"Dragging: {draggedSlot.name}");
   }
 
   public void SlotEndDrag()
   {
-    Debug.Log($"End Drag: {draggedSlot.name}");
+    Destroy(draggedIcon.gameObject);
+    draggedIcon = null;
   }
 
   public void SlotDrop(Slot_UI slot)
@@ -116,4 +137,15 @@ public class Inventory_UI : MonoBehaviour
     Debug.Log($"Drop: {draggedSlot.name} on {slot.name}");
   }
 
+  private void MoveToMousePosition(GameObject toMove)
+  {
+    if (canvas)
+    {
+      Vector2 position;
+      RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Input.mousePosition, null, out position);
+      toMove.transform.position = canvas.transform.TransformPoint(position);
+    }
+  }
+
 }
+
