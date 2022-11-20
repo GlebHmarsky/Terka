@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -384,6 +384,7 @@ MonoBehaviour:
   itemIcon: {fileID: 7499444348593164587}
   quantityText: {fileID: 7499444348671564613}
   aspectRatioFitter: {fileID: 2211545533429435314}
+  slotID: 0
   highlight: {fileID: 294539518257979097}
 --- !u!1 &7499444348593164585
 GameObject:

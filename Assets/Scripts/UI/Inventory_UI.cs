@@ -7,8 +7,6 @@ public class Inventory_UI : MonoBehaviour
 {
   public GameObject inventoryPanel;
   public PlayerManager playerManager;
-  [SerializeField] private Slot_UI slotPrefab;
-  [SerializeField] private GameObject slotsParent;
   public List<Slot_UI> slots;
   private bool dragSingle;
 
@@ -33,7 +31,7 @@ public class Inventory_UI : MonoBehaviour
   
   TODO: Может сделать на эвент изменения размера инвентаря?
     */
-    // InitiateInventoryUI();
+    SetupSlots();
     Refresh();
     playerManager.inventory.inventoryUpdate.AddListener(Refresh);
   }
@@ -55,7 +53,7 @@ public class Inventory_UI : MonoBehaviour
     }
   }
 
-  private void InitiateInventoryUI()
+  private void SetupSlots()
   {
     Inventory playerInventory = playerManager.inventory;
     int inventoryLength = playerInventory.slots.Count;
@@ -71,7 +69,7 @@ public class Inventory_UI : MonoBehaviour
 
   public void ToggleInventory()
   {
-
+    if (!inventoryPanel) return;
     if (!inventoryPanel.activeSelf)
     {
       inventoryPanel.SetActive(true);
@@ -141,7 +139,7 @@ public class Inventory_UI : MonoBehaviour
 
   public void SlotDrop(Slot_UI slot)
   {
-    Debug.Log($"Drop: {draggedSlot.name} on {slot.name}");
+    playerManager.inventory.MoveSlot(draggedSlot.slotID, slot.slotID);
   }
 
   private void MoveToMousePosition(GameObject toMove)
