@@ -33,6 +33,7 @@ public class Inventory_UI : MonoBehaviour
     */
     // InitiateInventoryUI();
     Refresh();
+    playerManager.inventory.inventoryUpdate.AddListener(Refresh);
   }
 
   void Update()
@@ -47,18 +48,13 @@ public class Inventory_UI : MonoBehaviour
   {
     Inventory playerInventory = playerManager.inventory;
     int inventoryLength = playerInventory.slots.Count;
-    for (int i = 0; i < inventoryLength; i++)
+    if (slots.Count != playerInventory.slots.Count)
     {
-      Slot_UI slotUI = Instantiate(slotPrefab, slotsParent.transform);
-      slots.Add(slotUI);
-
-      // Button button = slotUI.GetComponentInChildren<Button>();
-      // if (button)
-      // {
-      //   // We must copy element 'cause closure (замыкание)
-      //   int copy = i;
-      //   button.onClick.AddListener(() => Remove(copy));
-      // }
+      return;
+    }
+    for (int i = 0; i < slots.Count; i++)
+    {
+      slots[i].slotID = i;
     }
   }
 
@@ -94,14 +90,7 @@ public class Inventory_UI : MonoBehaviour
 
   public void Remove()
   {
-    Item itemToDrop = GameManager.instance.itemManager.GetItemByName(playerManager.inventory.slots[draggedSlot.slotID].itemName);
-    if (itemToDrop)
-    {
-      //FIXME: FIXME !!!!!!!!!!!!!!
-      playerManager.DropItem(itemToDrop, playerManager.inventory.slots[draggedSlot.slotID].count);
-      playerManager.inventory.RemoveAll(draggedSlot.slotID);
-      Refresh();
-    }
+    playerManager.DropItem(draggedSlot.slotID);
     draggedSlot = null;
   }
 

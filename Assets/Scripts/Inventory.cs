@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class Inventory
 {
+  public UnityEvent inventoryUpdate;
+
   [System.Serializable]
   public class Slot
   {
@@ -51,13 +54,12 @@ public class Inventory
 
   public Inventory(int numSlots)
   {
+    inventoryUpdate = new UnityEvent();
     for (int i = 0; i < numSlots; i++)
     {
       slots.Add(new Slot());
     }
   }
-
-
 
   // TODO: make bool for adding (if there is no place to add we should not add it and return false - flag for not added)
   public void Add(Item item)
@@ -67,11 +69,13 @@ public class Inventory
       if (slot.itemName == item.data.itemName && slot.CanBeAdded())
       {
         slot.AddItem(item);
+        inventoryUpdate.Invoke();
         return;
       }
       else if (slot.itemName == "")
       {
         slot.AddItem(item);
+        inventoryUpdate.Invoke();
         return;
       }
     }
@@ -80,6 +84,7 @@ public class Inventory
   public void Remove(int index)
   {
     slots[index].RemoveItem();
+    inventoryUpdate.Invoke();
   }
 
   public void Remove(int index, int numToRemove)
