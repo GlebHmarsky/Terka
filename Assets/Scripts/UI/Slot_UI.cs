@@ -9,6 +9,8 @@ public class Slot_UI : MonoBehaviour
   public Image itemIcon;
   public TextMeshProUGUI quantityText;
   public AspectRatioFitter aspectRatioFitter;
+  // FIXME: Hide me
+  public int slotID;
 
   [SerializeField] private GameObject highlight;
 
