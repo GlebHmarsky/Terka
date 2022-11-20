@@ -24,15 +24,36 @@ public class Inventory
       maxAllowed = 99;
     }
 
-    public bool CanBeAdded()
+    public bool CanBeAdded(string itemName)
     {
-      return count != maxAllowed;
+      return itemName == this.itemName && count < maxAllowed;
+    }
+
+    public bool IsEmpty()
+    {
+      return itemName == "" && count == 0;
     }
 
     public void AddItem(Item item)
     {
       itemName = item.data.itemName;
       icon = item.data.icon;
+      count++;
+    }
+
+    public void AddItem(string itemName, Sprite icon, int maxAllowed)
+    {
+      this.itemName = itemName;
+      this.icon = icon;
+      this.maxAllowed = maxAllowed;
+      count++;
+    }
+
+    public void AddItem(Slot fromSlot)
+    {
+      this.itemName = fromSlot.itemName;
+      this.icon = fromSlot.icon;
+      this.maxAllowed = fromSlot.maxAllowed;
       count++;
     }
 
@@ -66,7 +87,7 @@ public class Inventory
   {
     foreach (var slot in slots)
     {
-      if (slot.itemName == item.data.itemName && slot.CanBeAdded())
+      if (slot.itemName == item.data.itemName && slot.CanBeAdded(item.data.itemName))
       {
         slot.AddItem(item);
         inventoryUpdate.Invoke();
@@ -97,12 +118,26 @@ public class Inventory
       }
     }
   }
+
   public void RemoveAll(int index)
   {
     int count = slots[index].count;
     for (int i = 0; i < count; i++)
     {
       Remove(index);
+    }
+  }
+
+  public void MoveSlot(int fromIndex, int toIndex)
+  {
+    Slot fromSlot = slots[fromIndex];
+    Slot toSlot = slots[toIndex];
+
+    if (toSlot.IsEmpty() || toSlot.CanBeAdded(fromSlot.itemName))
+    {
+      toSlot.AddItem(fromSlot);
+      fromSlot.RemoveItem();
+      inventoryUpdate.Invoke();
     }
   }
 
