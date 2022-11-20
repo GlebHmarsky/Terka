@@ -97,7 +97,8 @@ public class Inventory_UI : MonoBehaviour
     Item itemToDrop = GameManager.instance.itemManager.GetItemByName(playerManager.inventory.slots[draggedSlot.slotID].itemName);
     if (itemToDrop)
     {
-      playerManager.DropItem(itemToDrop);
+      //FIXME: FIXME !!!!!!!!!!!!!!
+      playerManager.DropItem(itemToDrop, playerManager.inventory.slots[draggedSlot.slotID].count);
       playerManager.inventory.RemoveAll(draggedSlot.slotID);
       Refresh();
     }
