@@ -30,11 +30,12 @@ public class PlayerManager : MonoBehaviour
     droppedItem.rb2d.AddForce(spawnOffset * 2f, ForceMode2D.Impulse);
   }
 
-  // public void DropItemAll(int slotID)
-  // {
-  //   for (int i = 0; i < numToDrop; i++)
-  //   {
-  //     DropItem(item);
-  //   }
-  // }
+  public void DropItemAll(int slotID)
+  {
+    int length = inventory.slots[slotID].count;
+    for (int i = 0; i < length; i++)
+    {
+      DropItem(slotID);
+    }
+  }
 }
