@@ -98,7 +98,7 @@ public class Inventory_UI : MonoBehaviour
     if (itemToDrop)
     {
       playerManager.DropItem(itemToDrop);
-      playerManager.inventory.Remove(draggedSlot.slotID);
+      playerManager.inventory.RemoveAll(draggedSlot.slotID);
       Refresh();
     }
     draggedSlot = null;
