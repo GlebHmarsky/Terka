@@ -10,11 +10,13 @@ public class Inventory_UI : MonoBehaviour
   [SerializeField] private Slot_UI slotPrefab;
   [SerializeField] private GameObject slotsParent;
   public List<Slot_UI> slots;
+  private bool dragSingle;
 
   [SerializeField] private Canvas canvas;
 
   private Slot_UI draggedSlot;
   private Image draggedIcon;
+
 
   private void Awake()
   {
@@ -41,6 +43,15 @@ public class Inventory_UI : MonoBehaviour
     if (Input.GetKeyDown(KeyCode.Tab))
     {
       ToggleInventory();
+    }
+
+    if (Input.GetKey(KeyCode.LeftShift))
+    {
+      dragSingle = true;
+    }
+    else
+    {
+      dragSingle = false;
     }
   }
 
@@ -90,7 +101,14 @@ public class Inventory_UI : MonoBehaviour
 
   public void Remove()
   {
-    playerManager.DropItem(draggedSlot.slotID);
+    if (dragSingle)
+    {
+      playerManager.DropItem(draggedSlot.slotID);
+    }
+    else
+    {
+      playerManager.DropItemAll(draggedSlot.slotID);
+    }
     draggedSlot = null;
   }
 
@@ -104,16 +122,15 @@ public class Inventory_UI : MonoBehaviour
     draggedIcon.raycastTarget = false;
     draggedIcon.SetNativeSize();
     draggedIcon.rectTransform.anchorMin = new Vector2(0, 0);
-    draggedIcon.rectTransform.sizeDelta = new Vector2(50f, 50f);
+    draggedIcon.rectTransform.sizeDelta = new Vector2(70f, 70f);
+    draggedIcon.color = new Color(1, 1, 1, 0.5f);
 
     MoveToMousePosition(draggedIcon.gameObject);
-    Debug.Log($"Begin drag: {draggedSlot.name}");
   }
 
   public void SlotDrag()
   {
     MoveToMousePosition(draggedIcon.gameObject);
-    Debug.Log($"Dragging: {draggedSlot.name}");
   }
 
   public void SlotEndDrag()
