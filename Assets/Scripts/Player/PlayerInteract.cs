@@ -21,7 +21,7 @@ public class PlayerInteract : MonoBehaviour
     int y = Mathf.FloorToInt(transform.position.y);
 
     Vector2Int position2d = new Vector2Int(x, y);
- 
+
     Vector3Int position3d = (Vector3Int)position2d;
     TileManager tl = GameManager.instance.tileManager;
     if (tl.IsInteractable(position3d))

@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-  // FIXME: Static - bad, must be refactored somehow 
   public static GameManager instance;
+
   public TileManager tileManager;
+  public ItemManager itemManager;
+  public PlayerManager player;
+  public UIManger uiManger;
+
   void Awake()
   {
 
@@ -20,6 +24,8 @@ public class GameManager : MonoBehaviour
     }
 
     DontDestroyOnLoad(this.gameObject);
+
+    // player = FindObjectOfType<PlayerManager>();
   }
-  
+
 }

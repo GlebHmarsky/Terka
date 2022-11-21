@@ -25868,6 +25868,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: YellowCrate
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 233
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3d8bebeda53e004f9c8626a674e7e3c
+      internalID: -1983610326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -25908,6 +25929,7 @@ TextureImporter:
       Overworld_182: -389721090388266748
       Overworld_684: 8973341476912519732
       Overworld_474: 1495279899040768170
+      Overworld_1073: 1876577570
       Overworld_878: 4008886714264779312
       Overworld_690: 2155942615271929327
       Overworld_119: -3979933458587651260
@@ -25951,9 +25973,9 @@ TextureImporter:
       Overworld_1049: -644445067326750008
       Overworld_896: -7890928439282605198
       Overworld_506: -2048850230767714328
-      Overworld_653: -9211799230086705158
-      Overworld_939: -3621296866931629464
       Overworld_900: -7118023914124175846
+      Overworld_51: -3606838076391353694
+      Overworld_653: -9211799230086705158
       Overworld_473: -6737782894512821765
       Overworld_779: -5755477333991734293
       Overworld_375: 751384457945762904
@@ -25963,7 +25985,7 @@ TextureImporter:
       Overworld_79: -155129313630589030
       Overworld_1034: -3982839816660983787
       Overworld_359: -7566510596784653768
-      Overworld_51: -3606838076391353694
+      Overworld_939: -3621296866931629464
       Overworld_142: 3662669648143006114
       Overworld_657: -7778452239225803684
       Overworld_852: 4493617421600678115
@@ -26158,14 +26180,14 @@ TextureImporter:
       Overworld_94: -5236404030017859692
       Overworld_285: 7493861431360142108
       Overworld_1008: 3074887630006476876
-      Overworld_160: -8562630478679771310
       Overworld_873: -451122951927397422
-      Overworld_472: 4199972465763937706
+      Overworld_160: -8562630478679771310
+      Overworld_424: 666416119052026578
       Overworld_57: -7235469916650045074
       Overworld_787: 8902892693796514197
       Overworld_47: -3963497465760332096
       Overworld_185: -7921517988886787588
-      Overworld_424: 666416119052026578
+      Overworld_472: 4199972465763937706
       Overworld_410: 1412988594821571083
       Overworld_233: 6386603514321971003
       Overworld_260: 6333853765583690847
@@ -26436,16 +26458,16 @@ TextureImporter:
       Overworld_817: -2715854885519133993
       Overworld_1036: 2572722799497503140
       Overworld_502: 9017138880218121653
-      Overworld_446: -7360851500141600946
       Overworld_866: 8928618290579301758
-      Overworld_1052: 5859061253907293290
       Overworld_303: 2604222589531987136
-      Overworld_317: -1088169713482306408
+      Overworld_452: -4875744817803963820
+      Overworld_446: -7360851500141600946
+      Overworld_1052: 5859061253907293290
       Overworld_396: 8707285183721296483
+      Overworld_317: -1088169713482306408
       Overworld_569: 6818533698137383071
       Overworld_647: 3244827369187313840
       Overworld_421: 8860831932780837911
-      Overworld_452: -4875744817803963820
       Overworld_940: -601651290148323354
       Overworld_863: 7146410853986203011
       Overworld_587: 4026047176536153734
@@ -26825,6 +26847,7 @@ TextureImporter:
       Overworld_244: 7865755025649348843
       Overworld_1001: -1400950766493620963
       Overworld_1010: -6579363635562815267
+      YellowCrate: -1983610326
       Overworld_458: 4204825842031276259
       Overworld_181: -3371896872818193155
       Overworld_1014: -6378622306130746880
