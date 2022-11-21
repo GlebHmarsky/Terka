@@ -140,7 +140,21 @@ public class Inventory
     {
       toSlot.AddItem(fromSlot);
       fromSlot.RemoveItem();
-      inventoryUpdate.Invoke();
+      this.inventoryUpdate.Invoke();
+
+      // Invoke event if there second inventory that we moving to slot
+      if (toInventory != this)
+      {
+        toInventory.inventoryUpdate.Invoke();
+      }
+    }
+  }
+
+  public void MoveSlot(int fromIndex, int toIndex, Inventory toInventory, int numToMove)
+  {
+    for (int i = 0; i < numToMove; i++)
+    {
+      MoveSlot(fromIndex, toIndex, toInventory);
     }
   }
 

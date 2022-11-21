@@ -113,8 +113,14 @@ public class Inventory_UI : MonoBehaviour
 
   public void SlotDrop(Slot_UI slot)
   {
-    UIManger.draggedSlot.inventory.MoveSlot(UIManger.draggedSlot.slotID, slot.slotID, slot.inventory);
-    Refresh();
+    if (UIManger.dragSingle)
+    {
+      UIManger.draggedSlot.inventory.MoveSlot(UIManger.draggedSlot.slotID, slot.slotID, slot.inventory);
+    }
+    else
+    {
+      UIManger.draggedSlot.inventory.MoveSlot(UIManger.draggedSlot.slotID, slot.slotID, slot.inventory, UIManger.draggedSlot.inventory.slots[UIManger.draggedSlot.slotID].count);
+    }
   }
 
   private void MoveToMousePosition(GameObject toMove)
