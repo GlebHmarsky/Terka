@@ -20,15 +20,6 @@ public class Inventory_UI : MonoBehaviour
   void Start()
   {
     inventory = GameManager.instance.player.inventory.GetInventoryByName(inventoryName);
-
-    /* TODO: Тут есть загвоздка которая мне не очень нравится
-  Дело в том, что если инвентарь у игрока не успеет проинициализироваться 
-  то тут он будет пустой. Это можно увидеть если Start заменить на Awake
-  Тогда Инициализация  инвентаря так же будет на Awake и он не успеет сюда прийти
-  проинициализированным. 
-  
-  TODO: Может сделать на эвент изменения размера инвентаря?
-    */
     SetupSlots();
     Refresh();
     inventory.inventoryUpdate.AddListener(Refresh);
@@ -62,26 +53,6 @@ public class Inventory_UI : MonoBehaviour
         slots[i].SetEmpty();
       }
     }
-  }
-
-  public void Remove()
-  {
-    Item itemToDrop = GameManager.instance.itemManager.GetItemByName(inventory.slots[UIManger.draggedSlot.slotID].itemName);
-
-    if (itemToDrop)
-    {
-      if (UIManger.dragSingle)
-      {
-        GameManager.instance.player.DropItem(itemToDrop);
-        inventory.Remove(UIManger.draggedSlot.slotID);
-      }
-      else
-      {
-        GameManager.instance.player.DropItem(itemToDrop, inventory.slots[UIManger.draggedSlot.slotID].count);
-        inventory.RemoveAll(UIManger.draggedSlot.slotID);
-      }
-    }
-    UIManger.draggedSlot = null;
   }
 
   public void SlotBeginDrag(Slot_UI slot)
