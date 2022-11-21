@@ -81,18 +81,36 @@ public class Inventory_UI : MonoBehaviour
     }
   }
 
+  // FIXME: PLEEEEEASE! THats not good
   public void Refresh()
   {
     Inventory playerInventory = playerManager.inventory;
-    for (int i = 0; i < slots.Count; i++)
-    {
-      if (playerInventory.slots[i].itemName != "")
+    Inventory playerToolbar = playerManager.toolbar;
+    if (slots.Count == playerInventory.slots.Count)
+      for (int i = 0; i < slots.Count; i++)
       {
-        slots[i].SetItem(playerInventory.slots[i]);
+        if (playerInventory.slots[i].itemName != "")
+        {
+          slots[i].SetItem(playerInventory.slots[i]);
+        }
+        else
+        {
+          slots[i].SetEmpty();
+        }
       }
-      else
+    else if (slots.Count == playerToolbar.slots.Count)
+    {
+      Debug.Log("Refresh for toolbar");
+      for (int i = 0; i < slots.Count; i++)
       {
-        slots[i].SetEmpty();
+        if (playerToolbar.slots[i].itemName != "")
+        {
+          slots[i].SetItem(playerToolbar.slots[i]);
+        }
+        else
+        {
+          slots[i].SetEmpty();
+        }
       }
     }
   }
@@ -139,6 +157,7 @@ public class Inventory_UI : MonoBehaviour
 
   public void SlotDrop(Slot_UI slot)
   {
+    Debug.Log($"Drop: {draggedSlot.slotID}, {slot.slotID}");
     playerManager.inventory.MoveSlot(draggedSlot.slotID, slot.slotID);
   }
 
