@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
   public TileManager tileManager;
   public ItemManager itemManager;
+  public PlayerManager player;
 
   void Awake()
   {
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     }
 
     DontDestroyOnLoad(this.gameObject);
+
+    // player = FindObjectOfType<PlayerManager>();
   }
 
 }

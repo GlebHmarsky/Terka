@@ -9,16 +9,12 @@ public class Collectable : MonoBehaviour
   {
     if (other.tag == "Player")
     {
-      PlayerManager playerManager = other.GetComponent<PlayerManager>();
-      if (playerManager)
-      {
-        Item item = GetComponent<Item>();
+      Item item = GetComponent<Item>();
 
-        if (item)
-        {
-          playerManager.inventory.Add(item);
-          Destroy(gameObject);
-        }
+      if (item)
+      {
+        GameManager.instance.player.inventory.Add("Backpack", item);
+        Destroy(gameObject);
       }
     }
   }

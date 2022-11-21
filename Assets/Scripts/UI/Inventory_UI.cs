@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Inventory_UI : MonoBehaviour
 {
   public GameObject inventoryPanel;
-  public PlayerManager playerManager;
+  public string inventoryName;
   public List<Slot_UI> slots;
   private bool dragSingle;
 
@@ -15,6 +15,7 @@ public class Inventory_UI : MonoBehaviour
   private Slot_UI draggedSlot;
   private Image draggedIcon;
 
+  private Inventory inventory;
 
   private void Awake()
   {
@@ -23,6 +24,8 @@ public class Inventory_UI : MonoBehaviour
 
   void Start()
   {
+    inventory = GameManager.instance.player.inventory.GetInventoryByName(inventoryName);
+
     /* TODO: Тут есть загвоздка которая мне не очень нравится
   Дело в том, что если инвентарь у игрока не успеет проинициализироваться 
   то тут он будет пустой. Это можно увидеть если Start заменить на Awake
@@ -33,7 +36,7 @@ public class Inventory_UI : MonoBehaviour
     */
     SetupSlots();
     Refresh();
-    playerManager.inventory.inventoryUpdate.AddListener(Refresh);
+    inventory.inventoryUpdate.AddListener(Refresh);
   }
 
   void Update()
@@ -55,15 +58,15 @@ public class Inventory_UI : MonoBehaviour
 
   private void SetupSlots()
   {
-    Inventory playerInventory = playerManager.inventory;
-    int inventoryLength = playerInventory.slots.Count;
-    if (slots.Count != playerInventory.slots.Count)
+    int inventoryLength = inventory.slots.Count;
+    if (slots.Count != inventory.slots.Count)
     {
       return;
     }
     for (int i = 0; i < slots.Count; i++)
     {
       slots[i].slotID = i;
+      slots[i].inventory = inventory;
     }
   }
 
@@ -84,46 +87,36 @@ public class Inventory_UI : MonoBehaviour
   // FIXME: PLEEEEEASE! THats not good
   public void Refresh()
   {
-    Inventory playerInventory = playerManager.inventory;
-    Inventory playerToolbar = playerManager.toolbar;
-    if (slots.Count == playerInventory.slots.Count)
-      for (int i = 0; i < slots.Count; i++)
-      {
-        if (playerInventory.slots[i].itemName != "")
-        {
-          slots[i].SetItem(playerInventory.slots[i]);
-        }
-        else
-        {
-          slots[i].SetEmpty();
-        }
-      }
-    else if (slots.Count == playerToolbar.slots.Count)
+    if (slots.Count != inventory.slots.Count) return;
+    for (int i = 0; i < slots.Count; i++)
     {
-      Debug.Log("Refresh for toolbar");
-      for (int i = 0; i < slots.Count; i++)
+      if (inventory.slots[i].itemName != "")
       {
-        if (playerToolbar.slots[i].itemName != "")
-        {
-          slots[i].SetItem(playerToolbar.slots[i]);
-        }
-        else
-        {
-          slots[i].SetEmpty();
-        }
+        slots[i].SetItem(inventory.slots[i]);
+      }
+      else
+      {
+        slots[i].SetEmpty();
       }
     }
   }
 
   public void Remove()
   {
-    if (dragSingle)
+    Item itemToDrop = GameManager.instance.itemManager.GetItemByName(inventory.slots[draggedSlot.slotID].itemName);
+
+    if (itemToDrop)
     {
-      playerManager.DropItem(draggedSlot.slotID);
-    }
-    else
-    {
-      playerManager.DropItemAll(draggedSlot.slotID);
+      if (dragSingle)
+      {
+        GameManager.instance.player.DropItem(itemToDrop);
+        inventory.Remove(draggedSlot.slotID);
+      }
+      else
+      {
+        GameManager.instance.player.DropItem(itemToDrop, inventory.slots[draggedSlot.slotID].count);
+        inventory.RemoveAll(draggedSlot.slotID);
+      }
     }
     draggedSlot = null;
   }
@@ -158,7 +151,7 @@ public class Inventory_UI : MonoBehaviour
   public void SlotDrop(Slot_UI slot)
   {
     Debug.Log($"Drop: {draggedSlot.slotID}, {slot.slotID}");
-    playerManager.inventory.MoveSlot(draggedSlot.slotID, slot.slotID);
+    draggedSlot.inventory.MoveSlot(draggedSlot.slotID, slot.slotID);
   }
 
   private void MoveToMousePosition(GameObject toMove)

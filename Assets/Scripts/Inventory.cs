@@ -93,7 +93,10 @@ public class Inventory
         inventoryUpdate.Invoke();
         return;
       }
-      else if (slot.itemName == "")
+    }
+    foreach (var slot in slots)
+    {
+      if (slot.itemName == "")
       {
         slot.AddItem(item);
         inventoryUpdate.Invoke();

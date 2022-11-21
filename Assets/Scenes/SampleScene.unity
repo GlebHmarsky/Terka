@@ -1930,7 +1930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 0}
-  playerManager: {fileID: 1443590919}
+  inventoryName: Toolbar
   slots:
   - {fileID: 1846730961}
   - {fileID: 507569024}
@@ -19147,7 +19147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 809725515}
-  playerManager: {fileID: 1443590919}
+  inventoryName: Backpack
   slots:
   - {fileID: 1605599367}
   - {fileID: 183066585}
@@ -23472,6 +23472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileManager: {fileID: 1457714035}
   itemManager: {fileID: 1457714038}
+  player: {fileID: 1443590919}
 --- !u!114 &1457714038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25338,6 +25339,14 @@ PrefabInstance:
       propertyPath: plantManager
       value: 
       objectReference: {fileID: 685154194}
+    - target: {fileID: 4800223363789054586, guid: 85a5c175239fdf8499e71ec7fdff6422, type: 3}
+      propertyPath: toolbarSlotCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800223363789054586, guid: 85a5c175239fdf8499e71ec7fdff6422, type: 3}
+      propertyPath: backpackSlotCount
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8191344807969496347, guid: 85a5c175239fdf8499e71ec7fdff6422, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 85a5c175239fdf8499e71ec7fdff6422, type: 3}

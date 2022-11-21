@@ -2,25 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(InventoryManager))]
 public class PlayerManager : MonoBehaviour
 {
-  public Inventory inventory;
-  public Inventory toolbar;
+  public InventoryManager inventory;
 
   void Awake()
   {
-    inventory = new Inventory(21);
-    toolbar = new Inventory(7);
+    inventory = GetComponent<InventoryManager>();
   }
 
-  public void DropItem(int slotID)
+  public void DropItem(Item itemToDrop)
   {
-    Item itemToDrop = GameManager.instance.itemManager.GetItemByName(inventory.slots[slotID].itemName);
-    if (itemToDrop)
-    {
-      inventory.Remove(slotID);
-    }
-
     Vector2 spawnLocation = transform.position;
 
     // Yeah, there is Random.insideUnitCircle - but it can return (0,0)
@@ -32,12 +25,11 @@ public class PlayerManager : MonoBehaviour
     droppedItem.rb2d.AddForce(spawnOffset * 2f, ForceMode2D.Impulse);
   }
 
-  public void DropItemAll(int slotID)
+  public void DropItem(Item itemToDrop, int numToDrop)
   {
-    int length = inventory.slots[slotID].count;
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < numToDrop; i++)
     {
-      DropItem(slotID);
+      DropItem(itemToDrop);
     }
   }
 }
