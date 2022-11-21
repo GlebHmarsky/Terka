@@ -998,9 +998,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 542980343}
-          m_TargetAssemblyTypeName: Inventory_UI, Assembly-CSharp
-          m_MethodName: Remove
+        - m_Target: {fileID: 1457714039}
+          m_TargetAssemblyTypeName: UIManger, Assembly-CSharp
+          m_MethodName: DropToWorld
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

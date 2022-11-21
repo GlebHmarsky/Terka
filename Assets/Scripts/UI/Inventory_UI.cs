@@ -86,6 +86,7 @@ public class Inventory_UI : MonoBehaviour
 
   public void SlotBeginDrag(Slot_UI slot)
   {
+    UIManger.draggedFromInventory=inventoryName;
     UIManger.draggedSlot = slot;
 
     UIManger.draggedIcon = Instantiate(UIManger.draggedSlot.itemIcon, canvas.transform);

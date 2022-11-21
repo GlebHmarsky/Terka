@@ -11,6 +11,8 @@ public class UIManger : MonoBehaviour
 
   public GameObject inventoryPanel;
 
+
+  public static string draggedFromInventory;
   public static Slot_UI draggedSlot;
   public static Image draggedIcon;
   public static bool dragSingle;
@@ -26,7 +28,7 @@ public class UIManger : MonoBehaviour
     {
       ToggleInventory();
     }
-    
+
     if (Input.GetKey(KeyCode.LeftShift))
     {
       dragSingle = true;
@@ -69,6 +71,30 @@ public class UIManger : MonoBehaviour
     else
     {
       inventoryPanel.SetActive(false);
+    }
+  }
+
+  public void DropToWorld()
+  {
+    Inventory inventory = GameManager.instance.player.inventory.GetInventoryByName(GetInventoryUI(draggedFromInventory).inventoryName);
+    if (inventory == null)
+    {
+      return;
+    }
+    Inventory.Slot slot = inventory.slots[draggedSlot.slotID];
+    Item itemToDrop = GameManager.instance.itemManager.GetItemByName(slot.itemName);
+    if (itemToDrop)
+    {
+      if (dragSingle)
+      {
+        GameManager.instance.player.DropItem(itemToDrop);
+        inventory.Remove(draggedSlot.slotID);
+      }
+      else
+      {
+        GameManager.instance.player.DropItem(itemToDrop, slot.count);
+        inventory.Remove(draggedSlot.slotID, slot.count);
+      }
     }
   }
 }
