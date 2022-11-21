@@ -1929,7 +1929,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58d40c6e49f9c6438f09b2967e805e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryPanel: {fileID: 0}
   inventoryName: Toolbar
   slots:
   - {fileID: 1846730961}
@@ -19146,7 +19145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58d40c6e49f9c6438f09b2967e805e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryPanel: {fileID: 809725515}
   inventoryName: Backpack
   slots:
   - {fileID: 1605599367}
@@ -23422,6 +23420,7 @@ GameObject:
   - component: {fileID: 1457714037}
   - component: {fileID: 1457714035}
   - component: {fileID: 1457714038}
+  - component: {fileID: 1457714039}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -23473,6 +23472,7 @@ MonoBehaviour:
   tileManager: {fileID: 1457714035}
   itemManager: {fileID: 1457714038}
   player: {fileID: 1443590919}
+  uiManger: {fileID: 0}
 --- !u!114 &1457714038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23487,6 +23487,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 1611466370290554018, guid: c73c7655db45d9f4facd3510add03e97, type: 3}
+--- !u!114 &1457714039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457714034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38997b103b0f4f499749db44d2ff800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUIs:
+  - {fileID: 542980343}
+  - {fileID: 301035909}
+  inventoryPanel: {fileID: 809725515}
 --- !u!1 &1598987441
 GameObject:
   m_ObjectHideFlags: 0

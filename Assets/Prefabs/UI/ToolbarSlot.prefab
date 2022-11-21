@@ -386,6 +386,11 @@ MonoBehaviour:
   quantityText: {fileID: 7499444348671564613}
   aspectRatioFitter: {fileID: 2211545533429435314}
   slotID: 0
+  inventory:
+    inventoryUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    slots: []
   highlight: {fileID: 294539518257979097}
 --- !u!114 &8260876657430588109
 MonoBehaviour:

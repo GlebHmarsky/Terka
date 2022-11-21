@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
   public TileManager tileManager;
   public ItemManager itemManager;
   public PlayerManager player;
+  public UIManger uiManger;
 
   void Awake()
   {
