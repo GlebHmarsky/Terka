@@ -11,8 +11,6 @@ public class UIManger : MonoBehaviour
 
   public GameObject inventoryPanel;
 
-
-  public static string draggedFromInventory;
   public static Slot_UI draggedSlot;
   public static Image draggedIcon;
   public static bool dragSingle;
@@ -76,7 +74,7 @@ public class UIManger : MonoBehaviour
 
   public void DropToWorld()
   {
-    Inventory inventory = GameManager.instance.player.inventory.GetInventoryByName(GetInventoryUI(draggedFromInventory).inventoryName);
+    Inventory inventory = draggedSlot.inventory;
     if (inventory == null)
     {
       return;
