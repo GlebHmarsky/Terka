@@ -30,13 +30,26 @@ public class PlayerInteract : MonoBehaviour
       {
         if (!plantManager.isOccupied(position2d))
         {
-          plantManager.CreatePlant(position2d, $"Test {position2d}");
+          Plant(position2d);
         }
       }
       else
       {
-        plantManager.CreatePlowed(position2d);
+        Till(position2d);
       }
     }
   }
+
+  private void Plant(Vector2Int position)
+  {
+    
+    plantManager.CreatePlant(position, $"Test {position}");
+  }
+
+  private void Till(Vector2Int position)
+  {
+    plantManager.CreatePlowed(position);
+  }
+
+
 }
