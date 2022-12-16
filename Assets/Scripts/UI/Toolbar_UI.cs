@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(Inventory_UI))]
 public class Toolbar_UI : MonoBehaviour
 {
-  // FIXME: тут походу надо обращаться к самому inventory_UI за слотами, а то иначе 2 места получается
-  [SerializeField] private List<Slot_UI> toolbarSlots = new List<Slot_UI>();
-
   private Slot_UI selectedSlot;
+  private Inventory_UI inventory_UI;
 
   void Start()
   {
+    inventory_UI = GetComponent<Inventory_UI>();
     SelectSlot(0);
   }
 
@@ -28,7 +28,7 @@ public class Toolbar_UI : MonoBehaviour
     {
       selectedSlot.SetHighlight(false);
     }
-    selectedSlot = toolbarSlots[index];
+    selectedSlot = inventory_UI.slots[index];
     selectedSlot.SetHighlight(true);
   }
 
