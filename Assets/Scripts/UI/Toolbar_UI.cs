@@ -15,6 +15,8 @@ public class Toolbar_UI : MonoBehaviour
     SelectSlot(0);
   }
 
+  // FIXME: Переписать на эвенты
+  // https://docs.unity3d.com/Manual/UIE-Keyboard-Events.html
   private void Update()
   {
     CheckAlphaNumericKeys();
