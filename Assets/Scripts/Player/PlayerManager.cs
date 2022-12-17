@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(InventoryManager))]
 public class PlayerManager : MonoBehaviour
 {
-  [HideInInspector]  public InventoryManager inventory;
+  [HideInInspector] public InventoryManager inventory;
 
   void Awake()
   {

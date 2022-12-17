@@ -8,22 +8,19 @@ public class Toolbar_UI : MonoBehaviour
 {
   private Slot_UI selectedSlot;
   private Inventory_UI inventory_UI;
-
+  public InventoryManager inventoryManager;
   void Start()
   {
     inventory_UI = GetComponent<Inventory_UI>();
-    SelectSlot(0);
-  }
 
-  // FIXME: Переписать на эвенты
-  // https://docs.unity3d.com/Manual/UIE-Keyboard-Events.html
-  private void Update()
-  {
-    CheckAlphaNumericKeys();
+    // TODO: погуглить как бы перенести это в сам IM чтобы хронология Start была верной.
+    inventoryManager.changeSelectedSlot.AddListener(SelectSlot);
+    inventoryManager.SelectSlot(0);
   }
 
   public void SelectSlot(int index)
   {
+    Debug.Log($"IN index {index}");
     if (selectedSlot)
     {
       selectedSlot.SetHighlight(false);
@@ -32,37 +29,5 @@ public class Toolbar_UI : MonoBehaviour
     selectedSlot.SetHighlight(true);
   }
 
-  private void CheckAlphaNumericKeys()
-  {
-    if (Input.GetKeyDown(KeyCode.Alpha1))
-    {
-      SelectSlot(0);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha2))
-    {
-      SelectSlot(1);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha3))
-    {
-      SelectSlot(2);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha4))
-    {
-      SelectSlot(3);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha5))
-    {
-      SelectSlot(4);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha6))
-    {
-      SelectSlot(5);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha7))
-    {
-      SelectSlot(6);
-    }
-
-  }
 
 }
