@@ -3,9 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerManager))]
 public class PlayerInteract : MonoBehaviour
 {
   [SerializeField] private PlantManager plantManager;
+  private PlayerManager playerManager;
+
+  private void Start()
+  {
+    playerManager = GetComponent<PlayerManager>();
+  }
 
   void Update()
   {
@@ -42,7 +49,7 @@ public class PlayerInteract : MonoBehaviour
 
   private void Plant(Vector2Int position)
   {
-    
+    // playerManager.inventory.
     plantManager.CreatePlant(position, $"Test {position}");
   }
 
