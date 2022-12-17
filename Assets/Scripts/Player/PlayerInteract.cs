@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerManager))]
 public class PlayerInteract : MonoBehaviour
 {
-  [SerializeField] private PlantManager plantManager;
   private PlayerManager playerManager;
 
   private void Start()
@@ -31,6 +27,7 @@ public class PlayerInteract : MonoBehaviour
 
     Vector3Int position3d = (Vector3Int)position2d;
     TileManager tl = GameManager.instance.tileManager;
+    PlantManager plantManager = GameManager.instance.plantManager;
     if (tl.IsInteractable(position3d))
     {
       if (plantManager.isPlowed(position2d))
@@ -49,13 +46,16 @@ public class PlayerInteract : MonoBehaviour
 
   private void Plant(Vector2Int position)
   {
-    // playerManager.inventory.
-    plantManager.CreatePlant(position, $"Test {position}");
+    Item item = playerManager.inventory.GetSelectedSlot().GetItem();
+    if (item)
+    {
+      item.data.Action.PerformAction(position, playerManager.inventory);
+    }
   }
 
   private void Till(Vector2Int position)
   {
-    plantManager.CreatePlowed(position);
+    GameManager.instance.plantManager.CreatePlowed(position);
   }
 
 

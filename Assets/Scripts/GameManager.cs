@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
   public ItemManager itemManager;
   public PlayerManager player;
   public UIManger uiManger;
+  public PlantManager plantManager;
 
   void Awake()
   {

@@ -5,5 +5,5 @@ using UnityEngine;
 // FIXME: Needs good naming for that
 public abstract class ScriptableAction : ScriptableObject
 {
-  public abstract void PerformAction();
+  public abstract void PerformAction(Vector2Int position, InventoryManager inventoryManager);
 }

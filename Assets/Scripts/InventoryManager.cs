@@ -58,9 +58,18 @@ public class InventoryManager : MonoBehaviour
     return null;
   }
 
+  public Inventory.Slot GetSelectedSlot()
+  {
+    return toolbar.slots[selectedSlot];
+  }
+  public void RemoveSelectedItem()
+  {
+    toolbar.Remove(selectedSlot);
+  }
+
   public void SelectSlot(int index)
   {
-    Debug.Log($"BEfore index {index}");
+    selectedSlot = index;
     changeSelectedSlot.Invoke(index);
   }
 

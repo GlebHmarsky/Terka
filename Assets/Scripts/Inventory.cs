@@ -24,6 +24,11 @@ public class Inventory
       maxAllowed = 99;
     }
 
+    public Item GetItem()
+    {
+      return GameManager.instance.itemManager.GetItemByName(itemName);
+    }
+
     public bool CanBeAdded(string itemName)
     {
       return itemName == this.itemName && count < maxAllowed;

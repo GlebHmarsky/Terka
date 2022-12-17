@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 [RequireComponent(typeof(Inventory_UI))]
 public class Toolbar_UI : MonoBehaviour
@@ -20,7 +19,6 @@ public class Toolbar_UI : MonoBehaviour
 
   public void SelectSlot(int index)
   {
-    Debug.Log($"IN index {index}");
     if (selectedSlot)
     {
       selectedSlot.SetHighlight(false);
