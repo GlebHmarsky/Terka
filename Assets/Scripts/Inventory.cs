@@ -12,43 +12,38 @@ public class Inventory
   [System.Serializable]
   public class Slot
   {
-    public string itemName;
+    public ItemData itemData;
     public Sprite icon;
     public int count;
     public int maxAllowed;
 
     public Slot()
     {
-      itemName = "";
+      itemData = null;
       count = 0;
       maxAllowed = 99;
     }
 
-    public Item GetItem()
+    public bool CanBeAdded(ItemData itemData)
     {
-      return GameManager.instance.itemManager.GetItemByName(itemName);
-    }
-
-    public bool CanBeAdded(string itemName)
-    {
-      return itemName == this.itemName && count < maxAllowed;
+      return itemData == this.itemData && count < maxAllowed;
     }
 
     public bool IsEmpty()
     {
-      return itemName == "" && count == 0;
+      return itemData == null && count == 0;
     }
 
-    public void AddItem(Item item)
+    public void AddItem(ItemData itemData)
     {
-      itemName = item.data.itemName;
-      icon = item.data.icon;
+      this.itemData = itemData;
+      icon = itemData.icon;
       count++;
     }
 
-    public void AddItem(string itemName, Sprite icon, int maxAllowed)
+    public void AddItem(ItemData itemData, Sprite icon, int maxAllowed)
     {
-      this.itemName = itemName;
+      this.itemData = itemData;
       this.icon = icon;
       this.maxAllowed = maxAllowed;
       count++;
@@ -56,7 +51,7 @@ public class Inventory
 
     public void AddItem(Slot fromSlot)
     {
-      this.itemName = fromSlot.itemName;
+      this.itemData = fromSlot.itemData;
       this.icon = fromSlot.icon;
       this.maxAllowed = fromSlot.maxAllowed;
       count++;
@@ -70,7 +65,7 @@ public class Inventory
         if (count == 0)
         {
           icon = null;
-          itemName = "";
+          itemData = null;
         }
       }
     }
@@ -88,22 +83,22 @@ public class Inventory
   }
 
   // TODO: make bool for adding (if there is no place to add we should not add it and return false - flag for not added)
-  public void Add(Item item)
+  public void Add(ItemData itemData)
   {
     foreach (var slot in slots)
     {
-      if (slot.itemName == item.data.itemName && slot.CanBeAdded(item.data.itemName))
+      if (slot.itemData == itemData && slot.CanBeAdded(itemData))
       {
-        slot.AddItem(item);
+        slot.AddItem(itemData);
         inventoryUpdate.Invoke();
         return;
       }
     }
     foreach (var slot in slots)
     {
-      if (slot.itemName == "")
+      if (!slot.itemData)
       {
-        slot.AddItem(item);
+        slot.AddItem(itemData);
         inventoryUpdate.Invoke();
         return;
       }
@@ -141,7 +136,7 @@ public class Inventory
     Slot fromSlot = slots[fromIndex];
     Slot toSlot = toInventory.slots[toIndex];
 
-    if (toSlot.IsEmpty() || toSlot.CanBeAdded(fromSlot.itemName))
+    if (toSlot.IsEmpty() || toSlot.CanBeAdded(fromSlot.itemData))
     {
       toSlot.AddItem(fromSlot);
       fromSlot.RemoveItem();

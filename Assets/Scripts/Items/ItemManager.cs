@@ -4,33 +4,16 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-  public Item[] items;
-  private Dictionary<string, Item> nameToItemDict = new Dictionary<string, Item>();
+  // public List<ItemData> itemDataList;
+  public Item itemPrefab;
 
-  private void Awake()
+  public Item CreateItem(ItemData itemData, Vector2 spawnLocation, Quaternion rotation)
   {
-    foreach (Item item in items)
-    {
-      AddItem(item);
-    }
-  }
+    Item item = Instantiate(itemPrefab, spawnLocation, rotation);
+    SpriteRenderer spriteRenderer = item.GetComponentInChildren<SpriteRenderer>();
+    spriteRenderer.sprite = itemData.icon;
 
-  private void AddItem(Item item)
-  {
-    if (!nameToItemDict.ContainsKey(item.data.itemName))
-    {
-      nameToItemDict.Add(item.data.itemName, item);
-    }
-  }
-
-  public Item GetItemByName(string type)
-  {
-    if (nameToItemDict.ContainsKey(type))
-    {
-      return nameToItemDict[type];
-    }
-
-    return null;
+    return item;
   }
 
 }

@@ -80,17 +80,17 @@ public class UIManger : MonoBehaviour
       return;
     }
     Inventory.Slot slot = inventory.slots[draggedSlot.slotID];
-    Item itemToDrop = GameManager.instance.itemManager.GetItemByName(slot.itemName);
-    if (itemToDrop)
+    
+    if (slot.itemData)
     {
       if (dragSingle)
       {
-        GameManager.instance.player.DropItem(itemToDrop);
+        GameManager.instance.player.DropItem(slot.itemData);
         inventory.Remove(draggedSlot.slotID);
       }
       else
       {
-        GameManager.instance.player.DropItem(itemToDrop, slot.count);
+        GameManager.instance.player.DropItem(slot.itemData, slot.count);
         inventory.Remove(draggedSlot.slotID, slot.count);
       }
     }

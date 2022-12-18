@@ -39,12 +39,12 @@ public class InventoryManager : MonoBehaviour
     CheckAlphaNumericKeys();
   }
 
-  public void Add(string inventoryName, Item item)
+  public void Add(string inventoryName, ItemData itemData)
   {
     Inventory inventory = GetInventoryByName(inventoryName);
     if (inventory != null)
     {
-      inventory.Add(item);
+      inventory.Add(itemData);
     }
   }
 
