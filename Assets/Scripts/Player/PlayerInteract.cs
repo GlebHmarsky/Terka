@@ -55,7 +55,11 @@ public class PlayerInteract : MonoBehaviour
 
   private void Till(Vector2Int position)
   {
-    GameManager.instance.plantManager.CreatePlowed(position);
+    Item item = playerManager.inventory.GetSelectedSlot().GetItem();
+    if (item)
+    {
+      item.data.Action.PerformAction(position, playerManager.inventory);
+    }    
   }
 
 
