@@ -7,7 +7,16 @@ public class PlantAction : ScriptableAction
 {
   public override void PerformAction(Vector2Int position, InventoryManager inventoryManager)
   {
-    inventoryManager.RemoveSelectedItem();
-    GameManager.instance.plantManager.CreatePlant(position, $"Test {position}");
+    PlantManager plantManager = GameManager.instance.plantManager;
+
+    if (plantManager.isPlowed(position))
+    {
+      if (!plantManager.isOccupied(position))
+      {
+        inventoryManager.RemoveSelectedItem();
+        plantManager.CreatePlant(position, $"Test {position}");
+      }
+    }
+
   }
 }

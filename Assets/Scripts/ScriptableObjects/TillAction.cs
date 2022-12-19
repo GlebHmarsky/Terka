@@ -6,11 +6,16 @@ using UnityEngine;
 public class TillAction : ScriptableAction
 {
   public override void PerformAction(Vector2Int position, InventoryManager inventoryManager)
-  {    
-    GameManager.instance.plantManager.CreatePlowed(position);
-  }
-  public void PerformAction(Vector2Int position)
-  {    
-    GameManager.instance.plantManager.CreatePlowed(position);
+  {
+    Vector3Int position3d = (Vector3Int)position;
+    TileManager tl = GameManager.instance.tileManager;
+    PlantManager plantManager = GameManager.instance.plantManager;
+
+    if (tl.IsInteractable(position3d))
+    {
+      if (plantManager.isPlowed(position)) return;
+      GameManager.instance.plantManager.CreatePlowed(position);
+    }
+
   }
 }
