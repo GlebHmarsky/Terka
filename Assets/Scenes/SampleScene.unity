@@ -24272,7 +24272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af635494a4318445a8573131f30fe64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minutes: 500
+  currentMinutes: 500
   gradient:
     serializedVersion: 2
     key0: {r: 0.1027946, g: 0.19045398, b: 0.6603774, a: 1}

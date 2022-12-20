@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
-  public float minutes = 0;
+  public float currentMinutes = 0;
   private int maxMinutesInDay = 1440;
   private int minutesToDisplay, hoursToDisplay, previousHoursToDisplay;
 
@@ -30,8 +31,7 @@ public class TimeManager : MonoBehaviour
   void Start()
   {
     SetLightGradient();
-    // SetClock();
-
+    SetClock();
   }
 
   void Update()
@@ -44,20 +44,40 @@ public class TimeManager : MonoBehaviour
     if (Time.time < nextIncrement) return;
 
     nextIncrement = Time.time + nextRate;
-    minutes += timeIncrement;
+    currentMinutes += timeIncrement;
 
-    if (minutes >= maxMinutesInDay)
+    if (currentMinutes >= maxMinutesInDay)
     {
-      minutes = 0;
+      currentMinutes = 0;
     }
 
     SetLightGradient();
-    // SetClock();
+    SetClock();
   }
 
   void SetLightGradient()
   {
-    percentageDayComplete = minutes / maxMinutesInDay;
+    percentageDayComplete = currentMinutes / maxMinutesInDay;
     environmentLight.color = gradient.Evaluate(percentageDayComplete);
+  }
+
+  void SetClock()
+  {
+    hoursToDisplay = Mathf.FloorToInt(currentMinutes / 60);
+    if (hoursToDisplay >= 24)
+    {
+      hoursToDisplay = 0;
+    }
+
+    minutesToDisplay = (int)currentMinutes % 60;
+
+    if (previousHoursToDisplay != hoursToDisplay)
+    {
+      previousHoursToDisplay = hoursToDisplay;
+      // CAll event
+    }
+
+    hoursText.text = hoursToDisplay.ToString("D2");
+    minutesText.text = minutesToDisplay.ToString("D2");
   }
 }
