@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using TMPro;
+using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour
 {
@@ -25,8 +26,12 @@ public class TimeManager : MonoBehaviour
   public TMP_Text hoursText;
   public TMP_Text minutesText;
 
-  public delegate void TimeChangeEventHandler(int hours);
-  public event TimeChangeEventHandler EventTimeChanged;
+  public UnityEvent<int> EventTimeChanged;
+
+  private void Awake()
+  {
+    EventTimeChanged = new UnityEvent<int>();
+  }
 
   void Start()
   {
@@ -37,6 +42,8 @@ public class TimeManager : MonoBehaviour
   void Update()
   {
     IncrementTime();
+    MakeTimeFaster();
+    MakeNormalTime();
   }
 
   void IncrementTime()
@@ -74,10 +81,34 @@ public class TimeManager : MonoBehaviour
     if (previousHoursToDisplay != hoursToDisplay)
     {
       previousHoursToDisplay = hoursToDisplay;
-      // CAll event
+      CallEventTimeChanged(hoursToDisplay);
     }
 
     hoursText.text = hoursToDisplay.ToString("D2");
     minutesText.text = minutesToDisplay.ToString("D2");
+  }
+
+  public void CallEventTimeChanged(int hoursToTransmit)
+  {
+    if (EventTimeChanged != null)
+    {
+      EventTimeChanged.Invoke(hoursToTransmit);
+    }
+  }
+
+  void MakeTimeFaster()
+  {
+    if (Input.GetKeyDown(KeyCode.Equals))
+    {
+
+      timeIncrement += 10;
+    }
+  }
+  void MakeNormalTime()
+  {
+    if (Input.GetKey(KeyCode.Minus))
+    {
+      timeIncrement = 1;
+    }
   }
 }

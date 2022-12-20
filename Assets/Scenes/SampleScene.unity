@@ -24305,6 +24305,21 @@ MonoBehaviour:
   environmentLight: {fileID: 1111222803}
   hoursText: {fileID: 1286411250}
   minutesText: {fileID: 908587365}
+  EventTimeChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 2f21a1375eeb6354d8eac58abf0c1a6d, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1468627457 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4800223363789054586, guid: 85a5c175239fdf8499e71ec7fdff6422, type: 3}
