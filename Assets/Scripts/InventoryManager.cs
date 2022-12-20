@@ -2,6 +2,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class InventoryManager : MonoBehaviour
   [Header("Toolbar")]
   public Inventory toolbar;
   public int toolbarSlotCount;
+  private int selectedSlot = 0;
+
+
+  // [Header("Events")]
+  [HideInInspector] public UnityEvent<int> changeSelectedSlot;
 
   private void Awake()
   {
@@ -22,14 +28,23 @@ public class InventoryManager : MonoBehaviour
 
     inventoryByName.Add("Backpack", backpack);
     inventoryByName.Add("Toolbar", toolbar);
+
+    changeSelectedSlot = new UnityEvent<int>();
   }
 
-  public void Add(string inventoryName, Item item)
+  private void Update()
+  {
+    // FIXME: Переписать на эвенты
+    // https://docs.unity3d.com/Manual/UIE-Keyboard-Events.html
+    CheckAlphaNumericKeys();
+  }
+
+  public void Add(string inventoryName, ItemData itemData)
   {
     Inventory inventory = GetInventoryByName(inventoryName);
     if (inventory != null)
     {
-      inventory.Add(item);
+      inventory.Add(itemData);
     }
   }
 
@@ -41,6 +56,54 @@ public class InventoryManager : MonoBehaviour
       return inventoryByName[inventoryName];
     }
     return null;
+  }
+
+  public Inventory.Slot GetSelectedSlot()
+  {
+    return toolbar.slots[selectedSlot];
+  }
+  public void RemoveSelectedItem()
+  {
+    toolbar.Remove(selectedSlot);
+  }
+
+  public void SelectSlot(int index)
+  {
+    selectedSlot = index;
+    changeSelectedSlot.Invoke(index);
+  }
+
+  private void CheckAlphaNumericKeys()
+  {
+    if (Input.GetKeyDown(KeyCode.Alpha1))
+    {
+      SelectSlot(0);
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha2))
+    {
+      SelectSlot(1);
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha3))
+    {
+      SelectSlot(2);
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha4))
+    {
+      SelectSlot(3);
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha5))
+    {
+      SelectSlot(4);
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha6))
+    {
+      SelectSlot(5);
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha7))
+    {
+      SelectSlot(6);
+    }
+
   }
 
 }

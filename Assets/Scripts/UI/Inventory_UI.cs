@@ -44,7 +44,7 @@ public class Inventory_UI : MonoBehaviour
     if (slots.Count != inventory.slots.Count) return;
     for (int i = 0; i < slots.Count; i++)
     {
-      if (inventory.slots[i].itemName != "")
+      if (inventory.slots[i].itemData != null)
       {
         slots[i].SetItem(inventory.slots[i]);
       }
@@ -57,7 +57,6 @@ public class Inventory_UI : MonoBehaviour
 
   public void SlotBeginDrag(Slot_UI slot)
   {
-    UIManger.draggedFromInventory=inventoryName;
     UIManger.draggedSlot = slot;
 
     UIManger.draggedIcon = Instantiate(UIManger.draggedSlot.itemIcon, canvas.transform);

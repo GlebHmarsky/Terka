@@ -1,23 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
+[RequireComponent(typeof(Inventory_UI))]
 public class Toolbar_UI : MonoBehaviour
 {
-  // FIXME: тут походу надо обращаться к самому inventory_UI за слотами, а то иначе 2 места получается
-  [SerializeField] private List<Slot_UI> toolbarSlots = new List<Slot_UI>();
-
   private Slot_UI selectedSlot;
-
+  private Inventory_UI inventory_UI;
+  public InventoryManager inventoryManager;
   void Start()
   {
-    SelectSlot(0);
-  }
+    inventory_UI = GetComponent<Inventory_UI>();
 
-  private void Update()
-  {
-    CheckAlphaNumericKeys();
+    // TODO: погуглить как бы перенести это в сам IM чтобы хронология Start была верной.
+    inventoryManager.changeSelectedSlot.AddListener(SelectSlot);
+    inventoryManager.SelectSlot(0);
   }
 
   public void SelectSlot(int index)
@@ -26,41 +23,9 @@ public class Toolbar_UI : MonoBehaviour
     {
       selectedSlot.SetHighlight(false);
     }
-    selectedSlot = toolbarSlots[index];
+    selectedSlot = inventory_UI.slots[index];
     selectedSlot.SetHighlight(true);
   }
 
-  private void CheckAlphaNumericKeys()
-  {
-    if (Input.GetKeyDown(KeyCode.Alpha1))
-    {
-      SelectSlot(0);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha2))
-    {
-      SelectSlot(1);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha3))
-    {
-      SelectSlot(2);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha4))
-    {
-      SelectSlot(3);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha5))
-    {
-      SelectSlot(4);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha6))
-    {
-      SelectSlot(5);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha7))
-    {
-      SelectSlot(6);
-    }
-
-  }
 
 }

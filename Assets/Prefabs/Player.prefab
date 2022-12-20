@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 3910402744046182071}
   - component: {fileID: 3910402744046182219}
   - component: {fileID: 1238938352239601128}
+  - component: {fileID: 4800223363789054586}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -337,3 +338,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7a8865f125bdc468064858cacaf263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+--- !u!114 &4800223363789054586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910402744046182064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14313317b130f4e4f8a1dae203b3640f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backpack:
+    inventoryUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    slots: []
+  backpackSlotCount: 21
+  toolbar:
+    inventoryUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    slots: []
+  toolbarSlotCount: 7
+  toolbar_UI: {fileID: 0}
+  changeSelectedSlot:
+    m_PersistentCalls:
+      m_Calls: []
