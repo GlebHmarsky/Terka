@@ -6,10 +6,44 @@ public class Plant : MonoBehaviour, IPlaceableObject
 {
   public Vector2Int position { get; set; }
   public string plantName;
+  public PlantData data;
+
+  public SpriteRenderer spriteRenderer;
+
+  private int stage = 0;
+  private int stagesCount;
 
   public Plant(Vector2Int position, string name)
   {
     this.position = position;
     this.plantName = name;
+  }
+
+  private void Start()
+  {
+    stagesCount = data.sprites.Count;
+    UpdateStageSprite();
+    GameManager.instance.timeManager.EventTimeChanged.AddListener(OnHoursChange);
+    spriteRenderer.sortingOrder = 0;
+  }
+
+  public void IncreaseStage()
+  {
+    if (stage + 1 >= stagesCount) return;
+
+    stage++;
+    spriteRenderer.sortingOrder = 1;
+    UpdateStageSprite();
+  }
+
+  void OnHoursChange(int hours)
+  {
+    IncreaseStage();
+  }
+
+  void UpdateStageSprite()
+  {
+    Sprite sprite = data.sprites[stage];
+    spriteRenderer.sprite = sprite;
   }
 }

@@ -6,4 +6,7 @@ using UnityEngine;
 public class PlantData : ScriptableObject
 {
   public List<Sprite> sprites;
+  public ItemData fruit;
+  public ScriptableItemAction Action;
+
 }

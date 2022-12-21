@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614d00e12ffefce44bbda82e0cb95b1d, type: 3}
   m_Name: Zemlenika
   m_EditorClassIdentifier: 
-  stage: 0
   sprites:
-  - {fileID: 2135107534, guid: 8644cf72b74aa3c4eaa1f07855279f1e, type: 3}
-  - {fileID: 166418256, guid: 8644cf72b74aa3c4eaa1f07855279f1e, type: 3}
-  - {fileID: -2054120326, guid: 8644cf72b74aa3c4eaa1f07855279f1e, type: 3}
-  - {fileID: 2052455551, guid: 8644cf72b74aa3c4eaa1f07855279f1e, type: 3}
+  - {fileID: 1914148504, guid: a89dd65299bcc4a43a1b308886c1f2ee, type: 3}
+  - {fileID: -241339215, guid: a89dd65299bcc4a43a1b308886c1f2ee, type: 3}
+  - {fileID: -460219666, guid: a89dd65299bcc4a43a1b308886c1f2ee, type: 3}
+  - {fileID: 387299949, guid: a89dd65299bcc4a43a1b308886c1f2ee, type: 3}
+  fruit: {fileID: 11400000, guid: e6235f614b734b445ba88a629eb15d48, type: 2}

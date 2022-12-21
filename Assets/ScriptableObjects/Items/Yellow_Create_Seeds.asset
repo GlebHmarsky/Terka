@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Yellow Create Seeds
   icon: {fileID: -1983610326, guid: 6c49fee69048a844e93f52b36f7c003b, type: 3}
   Action: {fileID: 11400000, guid: 77293712411cc624b96271d53cc03f93, type: 2}
+  plantSeed: {fileID: 11400000, guid: 903def0f905e13040bc48e61a6d87822, type: 2}

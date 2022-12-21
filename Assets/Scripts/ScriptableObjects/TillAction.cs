@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TillAction", menuName = "Scriptable Actions/TillAction")]
-public class TillAction : ScriptableAction
+public class TillAction : ScriptableItemAction
 {
   public override void PerformAction(Vector2Int position, InventoryManager inventoryManager)
   {

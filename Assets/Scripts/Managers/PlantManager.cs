@@ -17,12 +17,13 @@ public class PlantManager : MonoBehaviour
     plowed = new List<GameObject>();
   }
 
-  public void CreatePlant(Vector2Int position, string name)
+  public void CreatePlant(Vector2Int position, string name, PlantData data)
   {
     GameObject plantGameObject = Instantiate(plantPrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
     plants.Add(plantGameObject);
 
     Plant plant = plantGameObject.GetComponent<Plant>();
+    plant.data = data;
     plant.plantName = name;
     plant.position = position;
   }
