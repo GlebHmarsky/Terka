@@ -38,7 +38,7 @@ public class Plant : MonoBehaviour, IPlaceableObject
 
   public void DowngradeStage()
   {
-    if (stage != 0) return;
+    if (stage == 0) return;
 
     stage--;
     if (stage == 0)
@@ -53,9 +53,15 @@ public class Plant : MonoBehaviour, IPlaceableObject
     UpdateStageSprite();
   }
 
+  public bool CanBeHarvested()
+  {
+    return stage + 1 == stagesCount;
+  }
+
   public void Harvest()
   {
-    
+    if (!CanBeHarvested()) return;
+    data.Action.PerformAction(this);
   }
 
   void OnHoursChange(int hours)

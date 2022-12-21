@@ -24259,8 +24259,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plants: []
   plowed: []
-  plantPrefab: {fileID: 3963218876702602198, guid: e7e80e937d7fea449a7615388fbef1af, type: 3}
-  plowedPrefab: {fileID: 6320669342055648547, guid: 5c7bd1a13f3250e4b80500534a24ea8d, type: 3}
+  plantPrefab: {fileID: 3647292336563366695, guid: e7e80e937d7fea449a7615388fbef1af, type: 3}
+  plowedPrefab: {fileID: 1580308858347436124, guid: 5c7bd1a13f3250e4b80500534a24ea8d, type: 3}
 --- !u!114 &1457714041
 MonoBehaviour:
   m_ObjectHideFlags: 0

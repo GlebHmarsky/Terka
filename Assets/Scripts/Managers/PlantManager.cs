@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class PlantManager : MonoBehaviour
 {
-  public List<GameObject> plants;
-  public List<GameObject> plowed;
+  public List<Plant> plants;
+  public List<Plowed> plowed;
 
-  public GameObject plantPrefab;
-  public GameObject plowedPrefab;
+  public Plant plantPrefab;
+  public Plowed plowedPrefab;
 
 
   void Start()
   {
-    plants = new List<GameObject>();
-    plowed = new List<GameObject>();
+    plants = new List<Plant>();
+    plowed = new List<Plowed>();
   }
 
   public void CreatePlant(Vector2Int position, string name, PlantData data)
   {
-    GameObject plantGameObject = Instantiate(plantPrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
-    plants.Add(plantGameObject);
+    Plant plant = Instantiate(plantPrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
+    plants.Add(plant);
 
-    Plant plant = plantGameObject.GetComponent<Plant>();
     plant.data = data;
     plant.plantName = name;
     plant.position = position;
@@ -30,22 +29,30 @@ public class PlantManager : MonoBehaviour
 
   public void CreatePlowed(Vector2Int position)
   {
-    GameObject plowedGameObject = Instantiate(plowedPrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
+    Plowed plowedGameObject = Instantiate(plowedPrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
     this.plowed.Add(plowedGameObject);
 
-    Plowed plowed = plowedGameObject.GetComponent<Plowed>();
-    plowed.position = position;
+    plowedGameObject.position = position;
   }
 
   public bool isOccupied(Vector2Int position)
   {
-    GameObject obj = plants.Find(x => FindPlaceableObject(x, position));
-    return !(obj is null);
+    return !(GetPlant(position) is null);
   }
+
   public bool isPlowed(Vector2Int position)
   {
-    GameObject obj = plowed.Find(x => FindPlaceableObject(x, position));
-    return !(obj is null);
+    return !(GetPlowed(position) is null);
+  }
+
+  public Plant GetPlant(Vector2Int position)
+  {
+    return plants.Find(x => FindPlaceableObject(x.gameObject, position));
+  }
+
+  public Plowed GetPlowed(Vector2Int position)
+  {
+    return plowed.Find(x => FindPlaceableObject(x.gameObject, position));
   }
 
   private bool FindPlaceableObject(GameObject obj, Vector2Int position)
@@ -53,7 +60,5 @@ public class PlantManager : MonoBehaviour
     IPlaceableObject placeableObject = obj.GetComponent<IPlaceableObject>();
     return placeableObject.position == position;
   }
-
-  
 
 }
