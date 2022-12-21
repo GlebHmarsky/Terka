@@ -88,7 +88,7 @@ public class Inventory
     foreach (var slot in slots)
     {
       if (!slot.itemData) continue;
-      if (slot.itemData.itemName == itemData.itemName && slot.CanBeAdded(itemData))
+      if (slot.itemData == itemData && slot.CanBeAdded(itemData))
       {
         slot.AddItem(itemData);
         inventoryUpdate.Invoke();
