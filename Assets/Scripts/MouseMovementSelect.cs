@@ -13,8 +13,7 @@ public class MouseMovementSelect : MonoBehaviour
 
   void OnMouseMovement()
   {
-    Vector3 screenPosition = Input.mousePosition;
-    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
     position = new Vector3(Mathf.FloorToInt(worldPosition.x) + 0.5f, Mathf.FloorToInt(worldPosition.y) + 0.5f, 0);
     transform.position = position;
