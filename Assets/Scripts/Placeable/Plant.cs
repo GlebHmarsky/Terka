@@ -36,6 +36,28 @@ public class Plant : MonoBehaviour, IPlaceableObject
     UpdateStageSprite();
   }
 
+  public void DowngradeStage()
+  {
+    if (stage != 0) return;
+
+    stage--;
+    if (stage == 0)
+    {
+      spriteRenderer.sortingOrder = 0;
+    }
+    else
+    {
+      spriteRenderer.sortingOrder = 1;
+    }
+
+    UpdateStageSprite();
+  }
+
+  public void Harvest()
+  {
+    
+  }
+
   void OnHoursChange(int hours)
   {
     IncreaseStage();

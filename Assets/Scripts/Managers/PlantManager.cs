@@ -27,6 +27,7 @@ public class PlantManager : MonoBehaviour
     plant.plantName = name;
     plant.position = position;
   }
+
   public void CreatePlowed(Vector2Int position)
   {
     GameObject plowedGameObject = Instantiate(plowedPrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
@@ -52,5 +53,7 @@ public class PlantManager : MonoBehaviour
     IPlaceableObject placeableObject = obj.GetComponent<IPlaceableObject>();
     return placeableObject.position == position;
   }
+
+  
 
 }
