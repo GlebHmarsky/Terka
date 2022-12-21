@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// FIXME: Needs good naming for that
-public abstract class ScriptableAction : ScriptableObject
+public abstract class ScriptableItemAction : ScriptableObject
 {
   /// <summary>
   /// Perform some action
   /// </summary>
+  // ! FIXME: НУЖНО ИЗМЕНИТЬ АРГУМЕНТЫ ТАК,ЧТОБЫ ПРОКИДЫВАТЬ СЛОТ, А НЕ ЦЕЛУЮ ТОПКУ ИНВЕНТОРЯ
   public abstract void PerformAction(Vector2Int position, InventoryManager inventoryManager);
 }

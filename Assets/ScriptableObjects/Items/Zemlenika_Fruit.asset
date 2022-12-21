@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cecf1222722d4143aece67745b0dcc9, type: 3}
-  m_Name: Yellow_Create
+  m_Name: Zemlenika_Fruit
   m_EditorClassIdentifier: 
-  itemName: Yellow Create
-  icon: {fileID: -1983610326, guid: 6c49fee69048a844e93f52b36f7c003b, type: 3}
-  Action: {fileID: 11400000, guid: 77293712411cc624b96271d53cc03f93, type: 2}
+  itemName: Zemlenika Fruit
+  icon: {fileID: 21300000, guid: 6bf4386a846e17d43864b20129df975d, type: 3}
+  Action: {fileID: 0}
+  plantSeed: {fileID: 0}

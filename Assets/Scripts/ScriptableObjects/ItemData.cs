@@ -1,9 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Item Data")]
+[CreateAssetMenu(menuName = "Data/Item")]
 public class ItemData : ScriptableObject
 {
   public string itemName = "Item Name";
   public Sprite icon;
-  public ScriptableAction Action;
+  public ScriptableItemAction Action;
+  public PlantData plantSeed;
 }

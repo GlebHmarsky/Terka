@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantName: 
+  data: {fileID: 0}
+  spriteRenderer: {fileID: 6738589268401186181}
 --- !u!1 &7850739424247115162
 GameObject:
   m_ObjectHideFlags: 0

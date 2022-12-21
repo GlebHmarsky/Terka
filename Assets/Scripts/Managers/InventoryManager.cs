@@ -47,6 +47,13 @@ public class InventoryManager : MonoBehaviour
       inventory.Add(itemData);
     }
   }
+  public void Add(string inventoryName, ItemData itemData, int count)
+  {
+    for (int i = 0; i < count; i++)
+    {
+      Add(inventoryName, itemData);
+    }
+  }
 
 
   public Inventory GetInventoryByName(string inventoryName)
