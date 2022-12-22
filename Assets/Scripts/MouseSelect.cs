@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseMovementSelect : MonoBehaviour
+public class MouseSelect : MonoBehaviour
 {
   public Vector3 position;
   void Update()
