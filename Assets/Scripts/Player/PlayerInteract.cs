@@ -1,13 +1,16 @@
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerManager))]
+[RequireComponent(typeof(MouseSelect))]
 public class PlayerInteract : MonoBehaviour
 {
   private PlayerManager playerManager;
+  private MouseSelect mouseSelect;
 
   private void Start()
   {
     playerManager = GetComponent<PlayerManager>();
+    mouseSelect = GetComponent<MouseSelect>();
   }
 
   void Update()
@@ -22,10 +25,9 @@ public class PlayerInteract : MonoBehaviour
   {
     int x = Mathf.FloorToInt(transform.position.x);
     int y = Mathf.FloorToInt(transform.position.y);
-
-    Vector2Int position2d = new Vector2Int(x, y);
-    // First of all check if there is some actionable GameObject in scene
-    Plant plant = GameManager.instance.plantManager.GetPlant(position2d);
+    
+        // First of all check if there is some actionable GameObject in scene
+    Plant plant = GameManager.instance.plantManager.GetPlant(mouseSelect.position);
     if (plant != null)
     {
       if (plant.CanBeHarvested())
@@ -40,7 +42,7 @@ public class PlayerInteract : MonoBehaviour
     ItemData itemData = playerManager.inventory.GetSelectedSlot().itemData;
     if (itemData && itemData.Action)
     {
-      itemData.Action.PerformAction(position2d, playerManager.inventory);
+      itemData.Action.PerformAction(mouseSelect.position, playerManager.inventory);
     }
 
   }

@@ -171,7 +171,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 3910402744046182068}
   - component: {fileID: 3910402744046182071}
   - component: {fileID: 3910402744046182219}
+  - component: {fileID: 8388975099400447350}
   - component: {fileID: 1238938352239601128}
   - component: {fileID: 4800223363789054586}
   m_Layer: 0
@@ -325,7 +326,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef5b1f6e6bf9a041a58cafad93fcc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantManager: {fileID: 0}
+--- !u!114 &8388975099400447350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910402744046182064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13118c969b7822a478cf5fbb234ac0e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0, z: 0}
+  highlightTile: {fileID: 0}
 --- !u!114 &1238938352239601128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +377,6 @@ MonoBehaviour:
         m_Calls: []
     slots: []
   toolbarSlotCount: 7
-  toolbar_UI: {fileID: 0}
   changeSelectedSlot:
     m_PersistentCalls:
       m_Calls: []
