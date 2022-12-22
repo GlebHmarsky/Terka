@@ -15,7 +15,7 @@ public class PlayerInteract : MonoBehaviour
 
   void Update()
   {
-    if (Input.GetKeyDown(KeyCode.Space))
+    if (Input.GetKeyDown(KeyCode.Mouse0))
     {
       Interact();
     }
@@ -23,16 +23,12 @@ public class PlayerInteract : MonoBehaviour
 
   private void Interact()
   {
-    int x = Mathf.FloorToInt(transform.position.x);
-    int y = Mathf.FloorToInt(transform.position.y);
-    
-        // First of all check if there is some actionable GameObject in scene
+    // First of all check if there is some actionable GameObject in scene
     Plant plant = GameManager.instance.plantManager.GetPlant(mouseSelect.position);
     if (plant != null)
     {
       if (plant.CanBeHarvested())
       {
-
         plant.Harvest();
         return;
       }

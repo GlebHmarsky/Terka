@@ -16,6 +16,8 @@ public class MouseSelect : MonoBehaviour
 
   void OnMouseMovement()
   {
+    // int x = Mathf.FloorToInt(transform.position.x);
+    // int y = Mathf.FloorToInt(transform.position.y);
     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
     position = new Vector2Int(Mathf.FloorToInt(worldPosition.x), Mathf.FloorToInt(worldPosition.y));
