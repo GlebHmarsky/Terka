@@ -55,7 +55,6 @@ public class InventoryManager : MonoBehaviour
     }
   }
 
-
   public Inventory GetInventoryByName(string inventoryName)
   {
     if (inventoryByName.ContainsKey(inventoryName))
@@ -69,6 +68,7 @@ public class InventoryManager : MonoBehaviour
   {
     return toolbar.slots[selectedSlot];
   }
+
   public void RemoveSelectedItem()
   {
     toolbar.Remove(selectedSlot);
