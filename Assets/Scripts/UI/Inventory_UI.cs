@@ -84,6 +84,8 @@ public class Inventory_UI : MonoBehaviour
 
   public void SlotDrop(Slot_UI slot)
   {
+    if (!UIManger.draggedSlot) return;
+    
     if (UIManger.dragSingle)
     {
       UIManger.draggedSlot.inventory.MoveSlot(UIManger.draggedSlot.slotID, slot.slotID, slot.inventory);

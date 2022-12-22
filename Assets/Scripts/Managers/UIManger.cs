@@ -74,13 +74,15 @@ public class UIManger : MonoBehaviour
 
   public void DropToWorld()
   {
+    if (!draggedSlot) return;
+
     Inventory inventory = draggedSlot.inventory;
     if (inventory == null)
     {
       return;
     }
     Inventory.Slot slot = inventory.slots[draggedSlot.slotID];
-    
+
     if (slot.itemData)
     {
       if (dragSingle)
