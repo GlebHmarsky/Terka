@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class ItemCountPair
+{
+  public ItemData itemData;
+  public int count = 1;
+}
+
 public class InventoryManager : MonoBehaviour
 {
   public Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
@@ -17,6 +24,8 @@ public class InventoryManager : MonoBehaviour
   public int toolbarSlotCount;
   private int selectedSlot = 0;
 
+  [Header("Default items")]
+  public List<ItemCountPair> defaultItems;
 
   // [Header("Events")]
   [HideInInspector] public UnityEvent<int> changeSelectedSlot;
@@ -30,6 +39,13 @@ public class InventoryManager : MonoBehaviour
     inventoryByName.Add("Toolbar", toolbar);
 
     changeSelectedSlot = new UnityEvent<int>();
+  }
+  private void Start()
+  {
+    foreach (var itemPair in defaultItems)
+    {
+      Add("Toolbar", itemPair.itemData, itemPair.count);
+    }
   }
 
   private void Update()
