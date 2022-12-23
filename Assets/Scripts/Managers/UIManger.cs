@@ -83,7 +83,6 @@ public class UIManger : MonoBehaviour
   public void OpenChestInventory(Chest chest)
   {
     Inventory_UI[] inventoryUIs = chestUI.GetComponents<Inventory_UI>();
-    Debug.Log($"UIs: {inventoryUIs.Length}");
     Inventory_UI inventoryForChestUI = null;
     foreach (var ui in inventoryUIs)
     {
@@ -93,7 +92,6 @@ public class UIManger : MonoBehaviour
         break;
       }
     }
-    Debug.Log($"iChestUI: {inventoryForChestUI} name: {inventoryForChestUI.inventoryName}");
     if (!inventoryForChestUI) return;
     inventoryForChestUI.SetupInventory(chest.inventory);
     // TODO: think about: what if chest would destroy but invenotryUI still have a listner or other stuff 
