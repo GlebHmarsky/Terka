@@ -13,7 +13,7 @@ public class WorldObjectManager : MonoBehaviour
     chests = new List<Chest>();
   }
 
-  public void CreatePlant(Vector2Int position, string name, PlantData data)
+  public void CreateChest(Vector2Int position)
   {
     Chest chest = Instantiate(chestPrefab, new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity);
     chests.Add(chest);
@@ -23,14 +23,15 @@ public class WorldObjectManager : MonoBehaviour
 
   public bool isOccupied(Vector2Int position)
   {
-    return !(GetPlant(position) is null);
+    return !(GetChest(position) is null);
   }
 
-  public Chest GetPlant(Vector2Int position)
+  public Chest GetChest(Vector2Int position)
   {
     return chests.Find(x => FindPlaceableObject(x.gameObject, position));
   }
 
+// FIXME: тут должен прокидываться не gameobject а непосредственно интерфейс IPlaceableObject, аналогичный трабл в plantManager
   private bool FindPlaceableObject(GameObject obj, Vector2Int position)
   {
     IPlaceableObject placeableObject = obj.GetComponent<IPlaceableObject>();
