@@ -14,8 +14,4 @@ public class Chest : MonoBehaviour, IPlaceableObject
     inventory = new Inventory(inventorySize);
   }
 
-  void Update()
-  {
-
-  }
 }
