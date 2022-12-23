@@ -12,5 +12,6 @@ public class ConstructAction : ScriptableItemAction
     if (wom.isOccupied(position)) return;
     
     wom.CreateChest(position);
+    inventoryManager.RemoveSelectedItem();
   }
 }

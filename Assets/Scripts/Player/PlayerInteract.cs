@@ -34,7 +34,15 @@ public class PlayerInteract : MonoBehaviour
       }
     }
 
-    // After that, we go to inventory and perform item that we hold
+    // Second check the in world objects (like chest)
+    Chest chest = GameManager.instance.worldObjectManager.GetChest(mouseSelect.position);
+    if (chest != null)
+    {
+      GameManager.instance.uiManger.OpenChestInventory(chest);
+      return;
+    }
+
+    // After all, we go to inventory and perform item that we hold
     ItemData itemData = playerManager.inventory.GetSelectedSlot().itemData;
     if (itemData && itemData.Action)
     {

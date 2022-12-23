@@ -10,6 +10,10 @@ public class UIManger : MonoBehaviour
   public List<Inventory_UI> inventoryUIs;
 
   public GameObject inventoryPanel;
+  public GameObject chestPanel;
+  public GameObject chestUI;
+
+
   public List<GameObject> panels;
 
   public static Slot_UI draggedSlot;
@@ -65,7 +69,6 @@ public class UIManger : MonoBehaviour
     bool isSomePanelActive = false;
     foreach (var panel in panels)
     {
-      Debug.Log($"{panel} active? {panel.activeSelf}");
       if (panel.activeSelf)
       {
         panel.SetActive(false);
@@ -75,6 +78,26 @@ public class UIManger : MonoBehaviour
 
     if (!inventoryPanel || isSomePanelActive) return;
     inventoryPanel.SetActive(true);
+  }
+
+  public void OpenChestInventory(Chest chest)
+  {
+    Inventory_UI[] inventoryUIs = chestUI.GetComponents<Inventory_UI>();
+    Debug.Log($"UIs: {inventoryUIs.Length}");
+    Inventory_UI inventoryForChestUI = null;
+    foreach (var ui in inventoryUIs)
+    {
+      if (ui.inventoryName == "")
+      {
+        inventoryForChestUI = ui;
+        break;
+      }
+    }
+    Debug.Log($"iChestUI: {inventoryForChestUI} name: {inventoryForChestUI.inventoryName}");
+    if (!inventoryForChestUI) return;
+    inventoryForChestUI.SetupInventory(chest.inventory);
+    // TODO: think about: what if chest would destroy but invenotryUI still have a listner or other stuff 
+    chestPanel.SetActive(true);
   }
 
   public void DropToWorld()

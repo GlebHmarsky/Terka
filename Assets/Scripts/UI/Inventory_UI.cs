@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Inventory_UI : MonoBehaviour
 {
@@ -45,6 +46,30 @@ public class Inventory_UI : MonoBehaviour
     {
       slots[i].slotID = i;
       slots[i].inventory = inventory;
+
+      // TODO: Обязательно заняться проверкой что эта интересная операция не сжирает все запасы памяти при инициализациизации
+      EventTrigger trigger = slots[i].GetComponent<EventTrigger>();
+
+      EventTrigger.Entry slotBeginDrag = new EventTrigger.Entry();
+      slotBeginDrag.eventID = EventTriggerType.BeginDrag;
+      slotBeginDrag.callback.AddListener((data) => SlotBeginDrag(slots[i]));
+
+      EventTrigger.Entry slotDrag = new EventTrigger.Entry();
+      slotDrag.eventID = EventTriggerType.Drag;
+      slotDrag.callback.AddListener((data) => SlotDrag());
+
+      EventTrigger.Entry slotEndDrag = new EventTrigger.Entry();
+      slotEndDrag.eventID = EventTriggerType.Drag;
+      slotEndDrag.callback.AddListener((data) => SlotEndDrag());
+
+      EventTrigger.Entry slotDrop = new EventTrigger.Entry();
+      slotDrop.eventID = EventTriggerType.Drag;
+      slotDrop.callback.AddListener((data) => SlotDrop(slots[i]));
+
+      trigger.triggers.Add(slotBeginDrag);
+      trigger.triggers.Add(slotDrag);
+      trigger.triggers.Add(slotEndDrag);
+      trigger.triggers.Add(slotDrop);
     }
   }
 

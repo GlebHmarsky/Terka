@@ -97,3 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a95e9103fb4e745987f0a4d30bdfaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory:
+    inventoryUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    slots: []
+  inventorySize: 3

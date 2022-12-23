@@ -23,7 +23,7 @@ public class WorldObjectManager : MonoBehaviour
 
   public bool isOccupied(Vector2Int position)
   {
-    return !(GetChest(position) is null);
+    return GetChest(position) != null;
   }
 
   public Chest GetChest(Vector2Int position)
@@ -31,7 +31,7 @@ public class WorldObjectManager : MonoBehaviour
     return chests.Find(x => FindPlaceableObject(x.gameObject, position));
   }
 
-// FIXME: тут должен прокидываться не gameobject а непосредственно интерфейс IPlaceableObject, аналогичный трабл в plantManager
+  // FIXME: тут должен прокидываться не gameobject а непосредственно интерфейс IPlaceableObject, аналогичный трабл в plantManager
   private bool FindPlaceableObject(GameObject obj, Vector2Int position)
   {
     IPlaceableObject placeableObject = obj.GetComponent<IPlaceableObject>();
