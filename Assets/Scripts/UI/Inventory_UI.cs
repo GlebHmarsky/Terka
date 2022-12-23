@@ -19,7 +19,16 @@ public class Inventory_UI : MonoBehaviour
 
   void Start()
   {
-    inventory = GameManager.instance.player.inventory.GetInventoryByName(inventoryName);
+    if (inventoryName == "") return;
+
+    // FIXME: очень надо чтобы тут было enum :(
+    SetupInventory(GameManager.instance.player.inventory.GetInventoryByName(inventoryName));
+  }
+
+  public void SetupInventory(Inventory newInventory)
+  {
+    if (newInventory == null) return;
+    this.inventory = newInventory;
     SetupSlots();
     Refresh();
     inventory.inventoryUpdate.AddListener(Refresh);
@@ -85,7 +94,7 @@ public class Inventory_UI : MonoBehaviour
   public void SlotDrop(Slot_UI slot)
   {
     if (!UIManger.draggedSlot) return;
-    
+
     if (UIManger.dragSingle)
     {
       UIManger.draggedSlot.inventory.MoveSlot(UIManger.draggedSlot.slotID, slot.slotID, slot.inventory);

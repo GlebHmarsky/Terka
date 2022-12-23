@@ -10,6 +10,7 @@ public class UIManger : MonoBehaviour
   public List<Inventory_UI> inventoryUIs;
 
   public GameObject inventoryPanel;
+  public List<GameObject> panels;
 
   public static Slot_UI draggedSlot;
   public static Image draggedIcon;
@@ -61,15 +62,19 @@ public class UIManger : MonoBehaviour
 
   public void ToggleInventory()
   {
-    if (!inventoryPanel) return;
-    if (!inventoryPanel.activeSelf)
+    bool isSomePanelActive = false;
+    foreach (var panel in panels)
     {
-      inventoryPanel.SetActive(true);
+      Debug.Log($"{panel} active? {panel.activeSelf}");
+      if (panel.activeSelf)
+      {
+        panel.SetActive(false);
+        isSomePanelActive = true;
+      }
     }
-    else
-    {
-      inventoryPanel.SetActive(false);
-    }
+
+    if (!inventoryPanel || isSomePanelActive) return;
+    inventoryPanel.SetActive(true);
   }
 
   public void DropToWorld()
