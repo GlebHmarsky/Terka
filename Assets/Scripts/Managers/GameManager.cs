@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
   public UIManger uiManger;
   public PlantManager plantManager;
   public TimeManager timeManager;
+  public WorldObjectManager worldObjectManager;
 
   void Awake()
   {

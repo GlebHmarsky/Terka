@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Inventory_UI : MonoBehaviour
 {
@@ -19,7 +20,16 @@ public class Inventory_UI : MonoBehaviour
 
   void Start()
   {
-    inventory = GameManager.instance.player.inventory.GetInventoryByName(inventoryName);
+    if (inventoryName == "") return;
+
+    // FIXME: очень надо чтобы тут было enum :(
+    SetupInventory(GameManager.instance.player.inventory.GetInventoryByName(inventoryName));
+  }
+
+  public void SetupInventory(Inventory newInventory)
+  {
+    if (newInventory == null) return;
+    this.inventory = newInventory;
     SetupSlots();
     Refresh();
     inventory.inventoryUpdate.AddListener(Refresh);
@@ -34,8 +44,45 @@ public class Inventory_UI : MonoBehaviour
     }
     for (int i = 0; i < slots.Count; i++)
     {
-      slots[i].slotID = i;
-      slots[i].inventory = inventory;
+      Slot_UI slot = slots[i];
+      slot.slotID = i;
+      slot.inventory = inventory;
+
+      // TODO: Обязательно заняться проверкой что эта интересная операция не сжирает все запасы памяти при инициализациизации
+      EventTrigger trigger = slot.GetComponent<EventTrigger>();
+
+      EventTrigger.Entry slotBeginDrag = new EventTrigger.Entry();
+      slotBeginDrag.eventID = EventTriggerType.BeginDrag;
+      slotBeginDrag.callback.AddListener((data) => SlotBeginDrag(slot));
+
+      EventTrigger.Entry slotDrag = new EventTrigger.Entry();
+      slotDrag.eventID = EventTriggerType.Drag;
+      slotDrag.callback.AddListener((data) => SlotDrag());
+
+      EventTrigger.Entry slotEndDrag = new EventTrigger.Entry();
+      slotEndDrag.eventID = EventTriggerType.EndDrag;
+      slotEndDrag.callback.AddListener((data) => SlotEndDrag());
+
+      EventTrigger.Entry slotDrop = new EventTrigger.Entry();
+      slotDrop.eventID = EventTriggerType.Drop;
+      slotDrop.callback.AddListener((data) => SlotDrop(slot));
+
+      /* по поводу trigger.triggers.Clear();
+      Отчасти это стремная вещь. Поясню. Каждый раз когда мы открываем инвентарь - происходит ициализация слотов
+      Но они уже частично инициализированы на самом то деле. 
+      Всё что им по факту нужно поменять - так это инвентарь 
+      а этот Clear упрощает жизнь но в очень странном контексте. Я переживаю за 4 листнера выше - как бы они не скопились
+      и не забили стек. 
+      поэтому
+      FIXME: нужно переформулировать ициализацию так, чтобы вот клеара не было. См. идея выше 
+       */
+      trigger.triggers.Clear();
+      trigger.triggers.Add(slotBeginDrag);
+      trigger.triggers.Add(slotDrag);
+      trigger.triggers.Add(slotEndDrag);
+      trigger.triggers.Add(slotDrop);
+
+
     }
   }
 
@@ -84,6 +131,8 @@ public class Inventory_UI : MonoBehaviour
 
   public void SlotDrop(Slot_UI slot)
   {
+    if (!UIManger.draggedSlot) return;
+
     if (UIManger.dragSingle)
     {
       UIManger.draggedSlot.inventory.MoveSlot(UIManger.draggedSlot.slotID, slot.slotID, slot.inventory);
