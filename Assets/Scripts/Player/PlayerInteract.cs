@@ -18,6 +18,33 @@ public class PlayerInteract : MonoBehaviour
     if (Input.GetKeyDown(KeyCode.Mouse0))
     {
       Interact();
+      RaycastTest();
+      // RaycastTest2();
+    }
+  }
+
+  /// <summary>
+  /// Направленно от камеры стреляет в штуки чтобы с ними взаимодействовать
+  /// </summary>
+  private void RaycastTest()
+  {
+    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+    if (hit)
+    {
+      Debug.Log($"Ray hit: hit: {hit};\n transform: {hit.transform}; ");
+    }
+  }
+
+  /// <summary>
+  /// Вертикально проводит линию направленную вниз и ищет коллайдер
+  /// </summary>
+  private void RaycastTest2()
+  {
+    RaycastHit2D hit = Physics2D.Raycast(mouseSelect.position, -Vector2.up);
+    if (hit.collider != null)
+    {
+      Debug.Log($"Ray2 hit: hit: {hit};\n transform: {hit.transform}; ");
     }
   }
 
