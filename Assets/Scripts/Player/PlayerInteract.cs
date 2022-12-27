@@ -19,7 +19,6 @@ public class PlayerInteract : MonoBehaviour
     {
       Interact();
       RaycastTest();
-      // RaycastTest2();
     }
   }
 
@@ -33,18 +32,6 @@ public class PlayerInteract : MonoBehaviour
     if (hit)
     {
       Debug.Log($"Ray hit: hit: {hit};\n transform: {hit.transform}; ");
-    }
-  }
-
-  /// <summary>
-  /// Вертикально проводит линию направленную вниз и ищет коллайдер
-  /// </summary>
-  private void RaycastTest2()
-  {
-    RaycastHit2D hit = Physics2D.Raycast(mouseSelect.position, -Vector2.up);
-    if (hit.collider != null)
-    {
-      Debug.Log($"Ray2 hit: hit: {hit};\n transform: {hit.transform}; ");
     }
   }
 
