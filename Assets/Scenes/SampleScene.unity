@@ -30341,7 +30341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4800223363789054586, guid: 85a5c175239fdf8499e71ec7fdff6422, type: 3}
       propertyPath: defaultItems.Array.data[2].count
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4800223363789054586, guid: 85a5c175239fdf8499e71ec7fdff6422, type: 3}
       propertyPath: defaultItems.Array.data[0].itemData

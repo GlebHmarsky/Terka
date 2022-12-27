@@ -55,20 +55,36 @@ public class InventoryManager : MonoBehaviour
     CheckAlphaNumericKeys();
   }
 
-  public void Add(string inventoryName, ItemData itemData)
+  // TODO: make bool for adding (if there is no place to add we should not add it and return false - flag for not added)
+  /// <summary>
+  /// Add items to selected inventory
+  /// </summary>
+  /// <returns>True if item successfully added. False otherwise (no slots)</returns>
+  public bool Add(string inventoryName, ItemData itemData)
   {
     Inventory inventory = GetInventoryByName(inventoryName);
     if (inventory != null)
     {
-      inventory.Add(itemData);
+      return inventory.Add(itemData);
     }
+    return false;
   }
-  public void Add(string inventoryName, ItemData itemData, int count)
+
+  /// <summary>
+  /// Add items to selected inventory with count
+  /// </summary>
+  /// <returns>True if item successfully added. False otherwise (no slots)</returns>
+  public int Add(string inventoryName, ItemData itemData, int count)
   {
-    for (int i = 0; i < count; i++)
+    int i;
+    for (i = 0; i < count; i++)
     {
-      Add(inventoryName, itemData);
+      if (!Add(inventoryName, itemData))
+      {
+        break;
+      }
     }
+    return count - i;
   }
 
   public Inventory GetInventoryByName(string inventoryName)

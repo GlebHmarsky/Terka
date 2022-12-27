@@ -82,8 +82,12 @@ public class Inventory
     }
   }
 
-  // TODO: make bool for adding (if there is no place to add we should not add it and return false - flag for not added)
-  public void Add(ItemData itemData)
+  /// <summary>
+  /// Add item to inventory with searching same ItemData type
+  /// </summary>
+  /// <param name="itemData"></param>
+  /// <returns>True if item successfully added. False otherwise (no slots)</returns>
+  public bool Add(ItemData itemData)
   {
     foreach (var slot in slots)
     {
@@ -92,7 +96,7 @@ public class Inventory
       {
         slot.AddItem(itemData);
         inventoryUpdate.Invoke();
-        return;
+        return true;
       }
     }
     foreach (var slot in slots)
@@ -101,10 +105,36 @@ public class Inventory
       {
         slot.AddItem(itemData);
         inventoryUpdate.Invoke();
-        return;
+        return true;
       }
     }
+    return false;
   }
+
+  // TODO: make logic for add with counter
+  // public int Add(ItemData itemData, int count)
+  // {
+  //   foreach (var slot in slots)
+  //   {
+  //     if (!slot.itemData) continue;
+  //     if (slot.itemData == itemData && slot.CanBeAdded(itemData))
+  //     {
+  //       slot.AddItem(itemData);
+  //       inventoryUpdate.Invoke();
+  //       return true;
+  //     }
+  //   }
+  //   foreach (var slot in slots)
+  //   {
+  //     if (!slot.itemData)
+  //     {
+  //       slot.AddItem(itemData);
+  //       inventoryUpdate.Invoke();
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
 
   public void Remove(int index)
   {
