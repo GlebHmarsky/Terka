@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Inventory_UI : MonoBehaviour
 {
-  public string inventoryName;
+  public InventoryName inventoryName;
   public List<Slot_UI> slots;
 
   [SerializeField] private Canvas canvas;
@@ -20,7 +20,7 @@ public class Inventory_UI : MonoBehaviour
 
   void Start()
   {
-    if (inventoryName == "") return;
+    if (inventoryName == InventoryName.None) return;
 
     // FIXME: очень надо чтобы тут было enum :(
     SetupInventory(GameManager.instance.player.inventory.GetInventoryByName(inventoryName));

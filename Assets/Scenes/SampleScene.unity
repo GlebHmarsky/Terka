@@ -2775,7 +2775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58d40c6e49f9c6438f09b2967e805e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryName: Toolbar
+  inventoryName: 2
   slots:
   - {fileID: 1846730961}
   - {fileID: 507569024}
@@ -2836,7 +2836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58d40c6e49f9c6438f09b2967e805e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryName: 
+  inventoryName: 0
   slots:
   - {fileID: 1887649255}
   - {fileID: 1491566371}
@@ -2854,7 +2854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58d40c6e49f9c6438f09b2967e805e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryName: Backpack
+  inventoryName: 1
   slots:
   - {fileID: 876251977}
   - {fileID: 1059253726}
@@ -20084,7 +20084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58d40c6e49f9c6438f09b2967e805e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryName: Backpack
+  inventoryName: 1
   slots:
   - {fileID: 1605599367}
   - {fileID: 183066585}

@@ -11,9 +11,16 @@ public class ItemCountPair
   public int count = 1;
 }
 
+public enum InventoryName
+{
+  None,
+  Backpack,
+  Toolbar
+}
+
 public class InventoryManager : MonoBehaviour
 {
-  public Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
+  public Dictionary<InventoryName, Inventory> inventoryByName = new Dictionary<InventoryName, Inventory>();
 
   [Header("Backpack")]
   public Inventory backpack;
@@ -35,8 +42,8 @@ public class InventoryManager : MonoBehaviour
     backpack = new Inventory(backpackSlotCount);
     toolbar = new Inventory(toolbarSlotCount);
 
-    inventoryByName.Add("Backpack", backpack);
-    inventoryByName.Add("Toolbar", toolbar);
+    inventoryByName.Add(InventoryName.Backpack, backpack);
+    inventoryByName.Add(InventoryName.Toolbar, toolbar);
 
     changeSelectedSlot = new UnityEvent<int>();
   }
@@ -44,7 +51,7 @@ public class InventoryManager : MonoBehaviour
   {
     foreach (var itemPair in defaultItems)
     {
-      Add("Toolbar", itemPair.itemData, itemPair.count);
+      Add(InventoryName.Toolbar, itemPair.itemData, itemPair.count);
     }
   }
 
@@ -59,7 +66,7 @@ public class InventoryManager : MonoBehaviour
   /// Add items to selected inventory
   /// </summary>
   /// <returns>True if item successfully added. False otherwise (no slots)</returns>
-  public bool Add(string inventoryName, ItemData itemData)
+  public bool Add(InventoryName inventoryName, ItemData itemData)
   {
     Inventory inventory = GetInventoryByName(inventoryName);
     if (inventory != null)
@@ -73,7 +80,7 @@ public class InventoryManager : MonoBehaviour
   /// Add items to selected inventory with count
   /// </summary>
   /// <returns>True if item successfully added. False otherwise (no slots)</returns>
-  public int Add(string inventoryName, ItemData itemData, int count)
+  public int Add(InventoryName inventoryName, ItemData itemData, int count)
   {
     int i;
     for (i = 0; i < count; i++)
@@ -86,7 +93,7 @@ public class InventoryManager : MonoBehaviour
     return count - i;
   }
 
-  public Inventory GetInventoryByName(string inventoryName)
+  public Inventory GetInventoryByName(InventoryName inventoryName)
   {
     if (inventoryByName.ContainsKey(inventoryName))
     {

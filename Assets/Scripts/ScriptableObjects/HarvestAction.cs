@@ -7,7 +7,7 @@ public class HarvestAction : ScriptablePlantAction
 {
   public override void PerformAction(Plant plant)
   {
-    GameManager.instance.player.inventory.Add("Toolbar", plant.data.fruit, Random.Range(2, 5));
+    GameManager.instance.player.inventory.Add(InventoryName.Toolbar, plant.data.fruit, Random.Range(2, 5));
     plant.DowngradeStage();
   }
 }
