@@ -55,7 +55,6 @@ public class InventoryManager : MonoBehaviour
     CheckAlphaNumericKeys();
   }
 
-  // TODO: make bool for adding (if there is no place to add we should not add it and return false - flag for not added)
   /// <summary>
   /// Add items to selected inventory
   /// </summary>
@@ -142,7 +141,5 @@ public class InventoryManager : MonoBehaviour
     {
       SelectSlot(6);
     }
-
   }
-
 }
