@@ -22,7 +22,6 @@ public class Inventory_UI : MonoBehaviour
   {
     if (inventoryName == InventoryName.None) return;
 
-    // FIXME: очень надо чтобы тут было enum :(
     SetupInventory(GameManager.instance.player.inventory.GetInventoryByName(inventoryName));
   }
 
