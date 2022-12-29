@@ -7,6 +7,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public class Inventory
 {
+  /* FIXME: в ноушене я указал трабл того что UnityEvent сильно проигрывают C# event поэтому их надо переписать*/
   public UnityEvent inventoryUpdate;
 
   [System.Serializable]
