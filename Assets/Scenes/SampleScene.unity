@@ -1977,10 +1977,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2304069674030334792, guid: c73c7655db45d9f4facd3510add03e97, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3467625913996707164, guid: c73c7655db45d9f4facd3510add03e97, type: 3}
       propertyPath: m_Name
       value: Yellow Crate Item

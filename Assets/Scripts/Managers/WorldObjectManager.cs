@@ -28,13 +28,12 @@ public class WorldObjectManager : MonoBehaviour
 
   public Chest GetChest(Vector2Int position)
   {
-    return chests.Find(x => FindPlaceableObject(x.gameObject, position));
+    return chests.Find(x => FindPlaceableObject(x.GetComponent<IPlaceableObject>(), position));
   }
 
-  // FIXME: тут должен прокидываться не gameobject а непосредственно интерфейс IPlaceableObject, аналогичный трабл в plantManager
-  private bool FindPlaceableObject(GameObject obj, Vector2Int position)
+  private bool FindPlaceableObject(IPlaceableObject obj, Vector2Int position)
   {
-    IPlaceableObject placeableObject = obj.GetComponent<IPlaceableObject>();
-    return placeableObject.position == position;
+    // IPlaceableObject placeableObject = obj.GetComponent<IPlaceableObject>();
+    return obj.position == position;
   }
 }

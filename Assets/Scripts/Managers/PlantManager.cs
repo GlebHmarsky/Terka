@@ -47,18 +47,17 @@ public class PlantManager : MonoBehaviour
 
   public Plant GetPlant(Vector2Int position)
   {
-    return plants.Find(x => FindPlaceableObject(x.gameObject, position));
+    return plants.Find(x => FindPlaceableObject(x.GetComponent<IPlaceableObject>(), position));
   }
 
   public Plowed GetPlowed(Vector2Int position)
   {
-    return plowed.Find(x => FindPlaceableObject(x.gameObject, position));
+    return plowed.Find(x => FindPlaceableObject(x.GetComponent<IPlaceableObject>(), position));
   }
 
-  private bool FindPlaceableObject(GameObject obj, Vector2Int position)
+  private bool FindPlaceableObject(IPlaceableObject obj, Vector2Int position)
   {
-    IPlaceableObject placeableObject = obj.GetComponent<IPlaceableObject>();
-    return placeableObject.position == position;
+    return obj.position == position;
   }
 
 }

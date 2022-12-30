@@ -58,7 +58,6 @@ public class Inventory_UI : MonoBehaviour
       Slot_UI slot = slots[i];
       slot.slotID = i;
 
-      // TODO: Обязательно заняться проверкой что эта интересная операция не сжирает все запасы памяти при инициализациизации
       EventTrigger trigger = slot.GetComponent<EventTrigger>();
 
       EventTrigger.Entry slotBeginDrag = new EventTrigger.Entry();
