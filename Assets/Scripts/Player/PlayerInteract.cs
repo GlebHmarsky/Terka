@@ -17,22 +17,31 @@ public class PlayerInteract : MonoBehaviour
   {
     if (Input.GetKeyDown(KeyCode.Mouse0))
     {
+      if (RaycastAction()) return;
       Interact();
-      RaycastTest();
     }
   }
 
   /// <summary>
   /// Направленно от камеры стреляет в штуки чтобы с ними взаимодействовать
   /// </summary>
-  private void RaycastTest()
+  private bool RaycastAction()
   {
     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
     RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
     if (hit)
     {
-      Debug.Log($"Ray hit: hit: {hit};\n transform: {hit.transform}; ");
+      GameObject gameObject = hit.transform.gameObject;
+      Debug.Log($"Ray name gameObject: {gameObject.name};");
+
+      Interactable interactable = gameObject.GetComponent<Interactable>();
+      Debug.Log($"interactable: {interactable};");
+      if (!interactable) return false;
+
+      interactable.Call();
+      return true;
     }
+    return false;
   }
 
   private void Interact()
@@ -46,14 +55,6 @@ public class PlayerInteract : MonoBehaviour
         plant.Harvest();
         return;
       }
-    }
-
-    // Second check the in world objects (like chest)
-    Chest chest = GameManager.instance.worldObjectManager.GetChest(mouseSelect.position);
-    if (chest != null)
-    {
-      GameManager.instance.uiManger.OpenChestInventory(chest);
-      return;
     }
 
     // After all, we go to inventory and perform item that we hold
