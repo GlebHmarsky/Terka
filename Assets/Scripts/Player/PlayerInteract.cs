@@ -32,10 +32,7 @@ public class PlayerInteract : MonoBehaviour
     if (hit)
     {
       GameObject gameObject = hit.transform.gameObject;
-      Debug.Log($"Ray name gameObject: {gameObject.name};");
-
       Interactable interactable = gameObject.GetComponent<Interactable>();
-      Debug.Log($"interactable: {interactable};");
       if (!interactable) return false;
 
       interactable.Call();
