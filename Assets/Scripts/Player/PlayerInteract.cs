@@ -43,22 +43,11 @@ public class PlayerInteract : MonoBehaviour
 
   private void Interact()
   {
-    // First of all check if there is some actionable GameObject in scene
-    Plant plant = GameManager.instance.plantManager.GetPlant(mouseSelect.position);
-    if (plant != null)
-    {
-      if (plant.CanBeHarvested())
-      {
-        plant.Harvest();
-        return;
-      }
-    }
-
-    // After all, we go to inventory and perform item that we hold
+    // Interact with inventory's holding item
     ItemData itemData = playerManager.inventory.GetSelectedSlot().itemData;
     if (itemData && itemData.Action)
     {
-      itemData.Action.PerformAction(mouseSelect.position, playerManager.inventory);
+      itemData.Action.PerformAction(mouseSelect.position);
     }
 
   }

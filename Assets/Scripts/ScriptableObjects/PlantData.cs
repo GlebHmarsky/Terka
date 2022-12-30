@@ -7,6 +7,6 @@ public class PlantData : ScriptableObject
 {
   public List<Sprite> sprites;
   public ItemData fruit;
-  public ScriptablePlantAction Action;
+  public ScriptableObjectAction Action;
 
 }

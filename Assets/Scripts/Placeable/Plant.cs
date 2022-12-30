@@ -61,7 +61,7 @@ public class Plant : MonoBehaviour, IPlaceableObject
   public void Harvest()
   {
     if (!CanBeHarvested()) return;
-    data.Action.PerformAction(this);
+    data.Action.PerformAction(this.gameObject);
   }
 
   void OnHoursChange(int hours)

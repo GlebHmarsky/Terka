@@ -5,8 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlantAction", menuName = "Scriptable Actions/PlantAction")]
 public class PlantAction : ScriptableItemAction
 {
-  public override void PerformAction(Vector2Int position, InventoryManager inventoryManager)
+  public override void PerformAction(Vector2Int position)
   {
+    InventoryManager inventoryManager = GameManager.instance.player.inventory;
     PlantManager plantManager = GameManager.instance.plantManager;
 
     if (plantManager.isPlowed(position))
