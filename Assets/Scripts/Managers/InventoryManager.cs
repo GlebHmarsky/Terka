@@ -1,8 +1,6 @@
-using System.IO;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 [System.Serializable]
 public class ItemCountPair
@@ -11,9 +9,16 @@ public class ItemCountPair
   public int count = 1;
 }
 
+public enum InventoryName
+{
+  None,
+  Backpack,
+  Toolbar
+}
+
 public class InventoryManager : MonoBehaviour
 {
-  public Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
+  public Dictionary<InventoryName, Inventory> inventoryByName = new Dictionary<InventoryName, Inventory>();
 
   [Header("Backpack")]
   public Inventory backpack;
@@ -27,51 +32,65 @@ public class InventoryManager : MonoBehaviour
   [Header("Default items")]
   public List<ItemCountPair> defaultItems;
 
-  // [Header("Events")]
-  [HideInInspector] public UnityEvent<int> changeSelectedSlot;
+  public event Action<int> changeSelectedSlot;
 
   private void Awake()
   {
     backpack = new Inventory(backpackSlotCount);
     toolbar = new Inventory(toolbarSlotCount);
 
-    inventoryByName.Add("Backpack", backpack);
-    inventoryByName.Add("Toolbar", toolbar);
-
-    changeSelectedSlot = new UnityEvent<int>();
+    inventoryByName.Add(InventoryName.Backpack, backpack);
+    inventoryByName.Add(InventoryName.Toolbar, toolbar);
   }
   private void Start()
   {
     foreach (var itemPair in defaultItems)
     {
-      Add("Toolbar", itemPair.itemData, itemPair.count);
+      Add(InventoryName.Toolbar, itemPair.itemData, itemPair.count);
     }
   }
 
   private void Update()
   {
     // FIXME: Переписать на эвенты
+    /* боюсь эвентами не отделаемся и нужная новая херня под названием Unity NEW event system 
+    Оставил комментарий в ноушене на эту тему */
     // https://docs.unity3d.com/Manual/UIE-Keyboard-Events.html
     CheckAlphaNumericKeys();
   }
 
-  public void Add(string inventoryName, ItemData itemData)
+  /// <summary>
+  /// Add items to selected inventory
+  /// </summary>
+  /// <returns>True if item successfully added. False otherwise (no slots)</returns>
+  public bool Add(InventoryName inventoryName, ItemData itemData)
   {
     Inventory inventory = GetInventoryByName(inventoryName);
     if (inventory != null)
     {
-      inventory.Add(itemData);
+      return inventory.Add(itemData);
     }
-  }
-  public void Add(string inventoryName, ItemData itemData, int count)
-  {
-    for (int i = 0; i < count; i++)
-    {
-      Add(inventoryName, itemData);
-    }
+    return false;
   }
 
-  public Inventory GetInventoryByName(string inventoryName)
+  /// <summary>
+  /// Add items to selected inventory with count
+  /// </summary>
+  /// <returns>True if item successfully added. False otherwise (no slots)</returns>
+  public int Add(InventoryName inventoryName, ItemData itemData, int count)
+  {
+    int i;
+    for (i = 0; i < count; i++)
+    {
+      if (!Add(inventoryName, itemData))
+      {
+        break;
+      }
+    }
+    return count - i;
+  }
+
+  public Inventory GetInventoryByName(InventoryName inventoryName)
   {
     if (inventoryByName.ContainsKey(inventoryName))
     {
@@ -93,7 +112,7 @@ public class InventoryManager : MonoBehaviour
   public void SelectSlot(int index)
   {
     selectedSlot = index;
-    changeSelectedSlot.Invoke(index);
+    changeSelectedSlot(index);
   }
 
   private void CheckAlphaNumericKeys()
@@ -126,7 +145,5 @@ public class InventoryManager : MonoBehaviour
     {
       SelectSlot(6);
     }
-
   }
-
 }

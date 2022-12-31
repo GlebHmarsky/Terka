@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Inventory_UI))]
@@ -13,7 +11,7 @@ public class Toolbar_UI : MonoBehaviour
     inventory_UI = GetComponent<Inventory_UI>();
 
     // TODO: погуглить как бы перенести это в сам IM чтобы хронология Start была верной.
-    inventoryManager.changeSelectedSlot.AddListener(SelectSlot);
+    inventoryManager.changeSelectedSlot += SelectSlot;
     inventoryManager.SelectSlot(0);
   }
 

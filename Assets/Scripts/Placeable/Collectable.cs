@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Item))]
@@ -13,7 +11,14 @@ public class Collectable : MonoBehaviour
 
       if (item)
       {
-        GameManager.instance.player.inventory.Add("Toolbar", item.data);
+        InventoryManager inventoryManager = GameManager.instance.player.inventory;
+        int restCount = inventoryManager.Add(InventoryName.Toolbar, item.data, item.count);
+        if (restCount != 0)
+        {
+          // item don't fully fit 
+          item.count = restCount;
+          return;
+        }
         Destroy(gameObject);
       }
     }

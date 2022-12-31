@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ScriptableItemAction : ScriptableObject
@@ -8,5 +6,5 @@ public abstract class ScriptableItemAction : ScriptableObject
   /// Perform some action
   /// </summary>
   // ! FIXME: НУЖНО ИЗМЕНИТЬ АРГУМЕНТЫ ТАК,ЧТОБЫ ПРОКИДЫВАТЬ СЛОТ, А НЕ ЦЕЛУЮ ТОПКУ ИНВЕНТОРЯ
-  public abstract void PerformAction(Vector2Int position, InventoryManager inventoryManager);
+  public abstract void PerformAction(Vector2Int position);
 }

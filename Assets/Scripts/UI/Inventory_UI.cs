@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Inventory_UI : MonoBehaviour
 {
-  public string inventoryName;
+  public InventoryName inventoryName;
   public List<Slot_UI> slots;
 
   [SerializeField] private Canvas canvas;
@@ -20,9 +19,10 @@ public class Inventory_UI : MonoBehaviour
 
   void Start()
   {
-    if (inventoryName == "") return;
+    SetupInitialSlots();
 
-    // FIXME: очень надо чтобы тут было enum :(
+    if (inventoryName == InventoryName.None) return;
+
     SetupInventory(GameManager.instance.player.inventory.GetInventoryByName(inventoryName));
   }
 
@@ -30,25 +30,33 @@ public class Inventory_UI : MonoBehaviour
   {
     if (newInventory == null) return;
     this.inventory = newInventory;
-    SetupSlots();
+    SetupSlotsInventory();
     Refresh();
-    inventory.inventoryUpdate.AddListener(Refresh);
+    inventory.inventoryUpdate += Refresh;
   }
 
-  private void SetupSlots()
+  private void SetupSlotsInventory()
   {
     int inventoryLength = inventory.slots.Count;
     if (slots.Count != inventory.slots.Count)
     {
       return;
     }
+
+    for (int i = 0; i < slots.Count; i++)
+    {
+      Slot_UI slot = slots[i];
+      slot.inventory = inventory;
+    }
+  }
+
+  public void SetupInitialSlots()
+  {
     for (int i = 0; i < slots.Count; i++)
     {
       Slot_UI slot = slots[i];
       slot.slotID = i;
-      slot.inventory = inventory;
 
-      // TODO: Обязательно заняться проверкой что эта интересная операция не сжирает все запасы памяти при инициализациизации
       EventTrigger trigger = slot.GetComponent<EventTrigger>();
 
       EventTrigger.Entry slotBeginDrag = new EventTrigger.Entry();
@@ -74,15 +82,15 @@ public class Inventory_UI : MonoBehaviour
       а этот Clear упрощает жизнь но в очень странном контексте. Я переживаю за 4 листнера выше - как бы они не скопились
       и не забили стек. 
       поэтому
-      FIXME: нужно переформулировать ициализацию так, чтобы вот клеара не было. См. идея выше 
+
+      PS: трабл пофикшен, оставлю комментарий для потомков надеюсь они это когда-нибудь прочтут и зададут вопрос "чё тут было?"
+      PSS: коммент можно убрать в любой момент когда он тут надоест
        */
       trigger.triggers.Clear();
       trigger.triggers.Add(slotBeginDrag);
       trigger.triggers.Add(slotDrag);
       trigger.triggers.Add(slotEndDrag);
       trigger.triggers.Add(slotDrop);
-
-
     }
   }
 
@@ -127,6 +135,7 @@ public class Inventory_UI : MonoBehaviour
   {
     Destroy(UIManger.draggedIcon.gameObject);
     UIManger.draggedIcon = null;
+    UIManger.draggedSlot = null;
   }
 
   public void SlotDrop(Slot_UI slot)

@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManger : MonoBehaviour
 {
-  public Dictionary<string, Inventory_UI> inventoryUIByName = new Dictionary<string, Inventory_UI>();
+  public Dictionary<InventoryName, Inventory_UI> inventoryUIByName = new Dictionary<InventoryName, Inventory_UI>();
 
   public List<Inventory_UI> inventoryUIs;
 
@@ -53,7 +52,7 @@ public class UIManger : MonoBehaviour
     }
   }
 
-  public Inventory_UI GetInventoryUI(string inventoryName)
+  public Inventory_UI GetInventoryUI(InventoryName inventoryName)
   {
     if (inventoryUIByName.ContainsKey(inventoryName))
     {
@@ -86,7 +85,7 @@ public class UIManger : MonoBehaviour
     Inventory_UI inventoryForChestUI = null;
     foreach (var ui in inventoryUIs)
     {
-      if (ui.inventoryName == "")
+      if (ui.inventoryName == InventoryName.None)
       {
         inventoryForChestUI = ui;
         break;

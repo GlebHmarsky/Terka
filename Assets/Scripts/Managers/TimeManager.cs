@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using TMPro;
-using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour
 {
@@ -26,12 +23,7 @@ public class TimeManager : MonoBehaviour
   public TMP_Text hoursText;
   public TMP_Text minutesText;
 
-  public UnityEvent<int> EventTimeChanged;
-
-  private void Awake()
-  {
-    EventTimeChanged = new UnityEvent<int>();
-  }
+  public event Action<int> EventTimeChanged;
 
   void Start()
   {
@@ -92,7 +84,7 @@ public class TimeManager : MonoBehaviour
   {
     if (EventTimeChanged != null)
     {
-      EventTimeChanged.Invoke(hoursToTransmit);
+      EventTimeChanged(hoursToTransmit);
     }
   }
 

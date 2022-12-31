@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -10,8 +8,8 @@ public class Slot_UI : MonoBehaviour
   public TextMeshProUGUI quantityText;
   public AspectRatioFitter aspectRatioFitter;
   [HideInInspector] public int slotID;
-  public Inventory inventory; // TODO: think twice about that
-  /*TODO: Идея того, чтобы не хранить тут инвентарь так как мне это не нравится. 
+  public Inventory inventory;
+  /*Идея того, чтобы не хранить тут инвентарь так как мне это не нравится. 
   Суть такова: мы можем подвязаться на эвенты вновь и сделать слушателя в инвентаре на эвенты из UI 
   тк все действия происходят именно там. 
   добавить события что случилось перемещение какого-то слота в другое место
@@ -21,7 +19,10 @@ public class Slot_UI : MonoBehaviour
   это удобно, но мне кажется совершенно не правильным подходом. 
 
   PS: наверное двигать предмет между двумя инвернторями станет проблематичнее, так как мы не будем
-  знать 
+  знать знать хотя бы 1 из 2 инвенторей. 
+  Крч идея крах, мне лень её фиксить
+
+  PSS коммент имхо можно удалить, оставляю для молодых
 
    */
 

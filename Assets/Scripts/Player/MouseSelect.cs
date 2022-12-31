@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: можно стоит назвать чисто Select? тк выделение будет не только мышкой но и просто управлением
 public class MouseSelect : MonoBehaviour
 {
   public Vector2Int position;

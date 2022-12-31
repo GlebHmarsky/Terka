@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Plant : MonoBehaviour, IPlaceableObject
@@ -23,7 +21,7 @@ public class Plant : MonoBehaviour, IPlaceableObject
   {
     stagesCount = data.sprites.Count;
     UpdateStageSprite();
-    GameManager.instance.timeManager.EventTimeChanged.AddListener(OnHoursChange);
+    GameManager.instance.timeManager.EventTimeChanged += OnHoursChange;
     spriteRenderer.sortingOrder = 0;
   }
 
@@ -61,7 +59,7 @@ public class Plant : MonoBehaviour, IPlaceableObject
   public void Harvest()
   {
     if (!CanBeHarvested()) return;
-    data.Action.PerformAction(this);
+    data.Action.PerformAction(this.gameObject);
   }
 
   void OnHoursChange(int hours)

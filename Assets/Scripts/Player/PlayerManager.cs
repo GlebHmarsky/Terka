@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(InventoryManager))]
@@ -12,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     inventory = GetComponent<InventoryManager>();
   }
 
-  public void DropItem(ItemData itemData)
+  public Item DropItem(ItemData itemData)
   {
     Vector2 spawnLocation = transform.position;
 
@@ -23,13 +21,12 @@ public class PlayerManager : MonoBehaviour
 
     Item droppedItem = GameManager.instance.itemManager.CreateItem(itemData, spawnLocation + spawnOffset, Quaternion.identity);
     droppedItem.rb2d.AddForce(spawnOffset * 2f, ForceMode2D.Impulse);
+    return droppedItem;
   }
 
   public void DropItem(ItemData itemData, int numToDrop)
   {
-    for (int i = 0; i < numToDrop; i++)
-    {
-      DropItem(itemData);
-    }
+    var item = DropItem(itemData);
+    item.count = numToDrop;
   }
 }
