@@ -26,12 +26,7 @@ public class TimeManager : MonoBehaviour
   public TMP_Text hoursText;
   public TMP_Text minutesText;
 
-  public UnityEvent<int> EventTimeChanged;
-
-  private void Awake()
-  {
-    EventTimeChanged = new UnityEvent<int>();
-  }
+  public event Action<int> EventTimeChanged;
 
   void Start()
   {
@@ -92,7 +87,7 @@ public class TimeManager : MonoBehaviour
   {
     if (EventTimeChanged != null)
     {
-      EventTimeChanged.Invoke(hoursToTransmit);
+      EventTimeChanged(hoursToTransmit);
     }
   }
 

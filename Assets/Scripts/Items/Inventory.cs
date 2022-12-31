@@ -69,7 +69,6 @@ public class Inventory
     }
   }
 
-  /* FIXME: в ноушене я указал трабл того что UnityEvent сильно проигрывают C# event поэтому их надо переписать*/
   public event Action inventoryUpdate;
   public List<Slot> slots = new List<Slot>();
 
@@ -94,7 +93,7 @@ public class Inventory
       if (slot.itemData == itemData && slot.CanBeAdded(itemData))
       {
         slot.AddItem(itemData);
-        inventoryUpdate.Invoke();
+        inventoryUpdate();
         return true;
       }
     }
@@ -103,7 +102,7 @@ public class Inventory
       if (!slot.itemData)
       {
         slot.AddItem(itemData);
-        inventoryUpdate.Invoke();
+        inventoryUpdate();
         return true;
       }
     }
@@ -119,7 +118,7 @@ public class Inventory
   //     if (slot.itemData == itemData && slot.CanBeAdded(itemData))
   //     {
   //       slot.AddItem(itemData);
-  //       inventoryUpdate.Invoke();
+  //       inventoryUpdate();
   //       return true;
   //     }
   //   }
@@ -128,7 +127,7 @@ public class Inventory
   //     if (!slot.itemData)
   //     {
   //       slot.AddItem(itemData);
-  //       inventoryUpdate.Invoke();
+  //       inventoryUpdate();
   //       return true;
   //     }
   //   }
@@ -138,7 +137,7 @@ public class Inventory
   public void Remove(int index)
   {
     slots[index].RemoveItem();
-    inventoryUpdate.Invoke();
+    inventoryUpdate();
   }
 
   public void Remove(int index, int numToRemove)
@@ -170,12 +169,12 @@ public class Inventory
     {
       toSlot.AddItem(fromSlot);
       fromSlot.RemoveItem();
-      this.inventoryUpdate.Invoke();
+      this.inventoryUpdate();
 
       // Invoke event if there second inventory that we moving to slot
       if (toInventory != this)
       {
-        toInventory.inventoryUpdate.Invoke();
+        toInventory.inventoryUpdate();
       }
     }
   }

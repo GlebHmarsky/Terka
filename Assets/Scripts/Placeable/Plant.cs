@@ -23,7 +23,7 @@ public class Plant : MonoBehaviour, IPlaceableObject
   {
     stagesCount = data.sprites.Count;
     UpdateStageSprite();
-    GameManager.instance.timeManager.EventTimeChanged.AddListener(OnHoursChange);
+    GameManager.instance.timeManager.EventTimeChanged += OnHoursChange;
     spriteRenderer.sortingOrder = 0;
   }
 

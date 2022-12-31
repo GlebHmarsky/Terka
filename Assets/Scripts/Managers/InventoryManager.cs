@@ -1,8 +1,7 @@
-using System.IO;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 [System.Serializable]
 public class ItemCountPair
@@ -34,8 +33,7 @@ public class InventoryManager : MonoBehaviour
   [Header("Default items")]
   public List<ItemCountPair> defaultItems;
 
-  // [Header("Events")]
-  [HideInInspector] public UnityEvent<int> changeSelectedSlot;
+  public event Action<int> changeSelectedSlot;
 
   private void Awake()
   {
@@ -44,8 +42,6 @@ public class InventoryManager : MonoBehaviour
 
     inventoryByName.Add(InventoryName.Backpack, backpack);
     inventoryByName.Add(InventoryName.Toolbar, toolbar);
-
-    changeSelectedSlot = new UnityEvent<int>();
   }
   private void Start()
   {
@@ -115,7 +111,7 @@ public class InventoryManager : MonoBehaviour
   public void SelectSlot(int index)
   {
     selectedSlot = index;
-    changeSelectedSlot.Invoke(index);
+    changeSelectedSlot(index);
   }
 
   private void CheckAlphaNumericKeys()
