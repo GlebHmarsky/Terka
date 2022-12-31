@@ -22,7 +22,7 @@ public class Inventory
 
     public bool CanBeAdded(ItemData itemData)
     {
-      return itemData == this.itemData && count < maxAllowed;
+      return itemData == this.itemData && this.count < maxAllowed;
     }
 
     public bool IsEmpty()
@@ -35,6 +35,15 @@ public class Inventory
       this.itemData = itemData;
       icon = itemData.icon;
       count++;
+    }
+    public int AddItem(ItemData itemData, int count)
+    {
+      this.itemData = itemData;
+      icon = itemData.icon;
+      int restCount = maxAllowed - this.count - count;
+      restCount = restCount > 0 ? 0 : restCount;
+      this.count += count - restCount;
+      return restCount;
     }
 
     public void AddItem(ItemData itemData, Sprite icon, int maxAllowed)
@@ -107,30 +116,42 @@ public class Inventory
     return false;
   }
 
-  // TODO: make logic for add with counter
-  // public int Add(ItemData itemData, int count)
-  // {
-  //   foreach (var slot in slots)
-  //   {
-  //     if (!slot.itemData) continue;
-  //     if (slot.itemData == itemData && slot.CanBeAdded(itemData))
-  //     {
-  //       slot.AddItem(itemData);
-  //       inventoryUpdate();
-  //       return true;
-  //     }
-  //   }
-  //   foreach (var slot in slots)
-  //   {
-  //     if (!slot.itemData)
-  //     {
-  //       slot.AddItem(itemData);
-  //       inventoryUpdate();
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // }
+  /// <summary>
+  /// Add item to inventory with searching same ItemData type
+  /// </summary>
+  /// <returns>Count of items that could not fit in inventory</returns>
+  public int Add(ItemData itemData, int count)
+  {
+    int restCount = 0;
+    foreach (var slot in slots)
+    {
+      if (!slot.itemData) continue;
+      if (slot.CanBeAdded(itemData))
+      {
+        restCount = slot.AddItem(itemData, count);
+        count = restCount;
+        if (restCount == 0)
+        {
+          inventoryUpdate();
+          return 0;
+        }
+      }
+    }
+    foreach (var slot in slots)
+    {
+      if (!slot.itemData)
+      {
+        restCount = slot.AddItem(itemData, count);
+        count = restCount;
+        if (restCount == 0)
+        {
+          inventoryUpdate();
+          return 0;
+        }
+      }
+    }
+    return restCount;
+  }
 
   public void Remove(int index)
   {

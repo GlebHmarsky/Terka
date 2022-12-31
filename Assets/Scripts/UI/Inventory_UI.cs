@@ -135,6 +135,7 @@ public class Inventory_UI : MonoBehaviour
   {
     Destroy(UIManger.draggedIcon.gameObject);
     UIManger.draggedIcon = null;
+    UIManger.draggedSlot = null;
   }
 
   public void SlotDrop(Slot_UI slot)

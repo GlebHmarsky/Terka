@@ -11,9 +11,12 @@ public class Collectable : MonoBehaviour
 
       if (item)
       {
-        if (!GameManager.instance.player.inventory.Add(InventoryName.Toolbar, item.data))
+        InventoryManager inventoryManager = GameManager.instance.player.inventory;
+        int restCount = inventoryManager.Add(InventoryName.Toolbar, item.data, item.count);
+        if (restCount != 0)
         {
-          // item don't fit
+          // item don't fully fit 
+          item.count = restCount;
           return;
         }
         Destroy(gameObject);
