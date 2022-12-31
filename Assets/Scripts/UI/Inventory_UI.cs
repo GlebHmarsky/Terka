@@ -33,7 +33,7 @@ public class Inventory_UI : MonoBehaviour
     this.inventory = newInventory;
     SetupSlotsInventory();
     Refresh();
-    inventory.inventoryUpdate.AddListener(Refresh);
+    inventory.inventoryUpdate += Refresh;
   }
 
   private void SetupSlotsInventory()

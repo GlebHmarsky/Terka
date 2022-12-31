@@ -7,9 +7,6 @@ using UnityEngine.Events;
 [System.Serializable]
 public class Inventory
 {
-  /* FIXME: в ноушене я указал трабл того что UnityEvent сильно проигрывают C# event поэтому их надо переписать*/
-  public UnityEvent inventoryUpdate;
-
   [System.Serializable]
   public class Slot
   {
@@ -72,11 +69,12 @@ public class Inventory
     }
   }
 
+  /* FIXME: в ноушене я указал трабл того что UnityEvent сильно проигрывают C# event поэтому их надо переписать*/
+  public event Action inventoryUpdate;
   public List<Slot> slots = new List<Slot>();
 
   public Inventory(int numSlots)
   {
-    inventoryUpdate = new UnityEvent();
     for (int i = 0; i < numSlots; i++)
     {
       slots.Add(new Slot());
