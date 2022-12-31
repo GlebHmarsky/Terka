@@ -53,6 +53,8 @@ public class InventoryManager : MonoBehaviour
   private void Update()
   {
     // FIXME: Переписать на эвенты
+    /* боюсь эвентами не отделаемся и нужная новая херня под названием Unity NEW event system 
+    Оставил комментарий в ноушене на эту тему */
     // https://docs.unity3d.com/Manual/UIE-Keyboard-Events.html
     CheckAlphaNumericKeys();
   }
