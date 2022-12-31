@@ -9,7 +9,7 @@ public class TileManager : MonoBehaviour
   [SerializeField] private Tilemap interactableTilemap;
   [SerializeField] private Tile hiddenTile;
 
-  /* TODO: на деле эта штука нужная чтобы просто скрыть тайлы за сценой. 
+  /* на деле эта штука нужная чтобы просто скрыть тайлы за сценой. 
     Зачем? Чтобы мы видели ГДЕ можно взаимодействовать, а игрок понял это другим путём
     С этой же точки зрения нам потребуется один или два раза указать где тайлы должны быть
     А после можем же просто их спрятать вниз под сцену указав нужный уровень. 
@@ -33,7 +33,6 @@ public class TileManager : MonoBehaviour
     return false;
   }
 
-  // TODO: utils stuff, should move somewhere else
   List<Vector3Int> getAllTilesPosition(Tilemap tilemap)
   {
     List<Vector3Int> tileWorldLocations = new List<Vector3Int>();
