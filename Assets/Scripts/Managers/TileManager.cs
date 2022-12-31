@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class TileManager : MonoBehaviour
 {
-
   [SerializeField] private Tilemap interactableTilemap;
   [SerializeField] private Tile hiddenTile;
 
