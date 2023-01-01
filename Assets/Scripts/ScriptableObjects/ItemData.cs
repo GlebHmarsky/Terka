@@ -7,4 +7,5 @@ public class ItemData : ScriptableObject
   public Sprite icon;
   public ScriptableItemAction Action;
   public PlantData plantSeed;
+  public int price = 1;
 }

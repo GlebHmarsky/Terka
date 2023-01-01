@@ -16,3 +16,4 @@ MonoBehaviour:
   icon: {fileID: -1085656217, guid: af708cf5b2ac580499d2203a92e3b6be, type: 3}
   Action: {fileID: 11400000, guid: a0cfb34acfd28a34fa060839732fa951, type: 2}
   plantSeed: {fileID: 0}
+  price: 1
