@@ -1,13 +1,16 @@
 using UnityEngine;
 
 [RequireComponent(typeof(InventoryManager))]
+[RequireComponent(typeof(Wallet))]
 public class PlayerManager : MonoBehaviour
 {
   [HideInInspector] public InventoryManager inventory;
+  [HideInInspector] public Wallet wallet;
 
   void Awake()
   {
     inventory = GetComponent<InventoryManager>();
+    wallet = GetComponent<Wallet>();
   }
 
   public Item DropItem(ItemData itemData)
