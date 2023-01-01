@@ -112,12 +112,12 @@ public class UIManger : MonoBehaviour
     {
       if (dragSingle)
       {
-        GameManager.instance.player.DropItem(slot.itemData);
+        GameManager.instance.playerManager.DropItem(slot.itemData);
         inventory.Remove(draggedSlot.slotID);
       }
       else
       {
-        GameManager.instance.player.DropItem(slot.itemData, slot.count);
+        GameManager.instance.playerManager.DropItem(slot.itemData, slot.count);
         inventory.Remove(draggedSlot.slotID, slot.count);
       }
     }

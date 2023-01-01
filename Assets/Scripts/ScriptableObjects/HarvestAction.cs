@@ -9,7 +9,7 @@ public class HarvestAction : ScriptableObjectAction
     if (!plant) return;
     if (!plant.CanBeHarvested()) return;
 
-    GameManager.instance.player.inventory.Add(InventoryName.Toolbar, plant.data.fruit, Random.Range(2, 5));
+    GameManager.instance.playerManager.inventory.Add(InventoryName.Toolbar, plant.data.fruit, Random.Range(2, 5));
     plant.DowngradeStage();
   }
 }

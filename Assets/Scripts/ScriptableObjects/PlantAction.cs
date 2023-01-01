@@ -5,7 +5,7 @@ public class PlantAction : ScriptableItemAction
 {
   public override void PerformAction(Vector2Int position)
   {
-    InventoryManager inventoryManager = GameManager.instance.player.inventory;
+    InventoryManager inventoryManager = GameManager.instance.playerManager.inventory;
     PlantManager plantManager = GameManager.instance.plantManager;
 
     if (plantManager.isPlowed(position))

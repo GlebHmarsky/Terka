@@ -23,7 +23,7 @@ public class Inventory_UI : MonoBehaviour
 
     if (inventoryName == InventoryName.None) return;
 
-    SetupInventory(GameManager.instance.player.inventory.GetInventoryByName(inventoryName));
+    SetupInventory(GameManager.instance.playerManager.inventory.GetInventoryByName(inventoryName));
   }
 
   public void SetupInventory(Inventory newInventory)

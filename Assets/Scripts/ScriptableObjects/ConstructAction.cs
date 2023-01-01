@@ -5,7 +5,7 @@ public class ConstructAction : ScriptableItemAction
 {
   public override void PerformAction(Vector2Int position)
   {
-    InventoryManager inventoryManager = GameManager.instance.player.inventory;
+    InventoryManager inventoryManager = GameManager.instance.playerManager.inventory;
     WorldObjectManager wom = GameManager.instance.worldObjectManager;
 
     if (wom.isOccupied(position)) return;

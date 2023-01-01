@@ -11,7 +11,7 @@ public class Collectable : MonoBehaviour
 
       if (item)
       {
-        InventoryManager inventoryManager = GameManager.instance.player.inventory;
+        InventoryManager inventoryManager = GameManager.instance.playerManager.inventory;
         int restCount = inventoryManager.Add(InventoryName.Toolbar, item.data, item.count);
         if (restCount != 0)
         {
