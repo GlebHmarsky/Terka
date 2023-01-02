@@ -32,4 +32,9 @@ public class PlayerManager : MonoBehaviour
     var item = DropItem(itemData);
     item.count = numToDrop;
   }
+
+  public void SellItem(ItemData itemToSell, int count)
+  {
+    wallet.Add(itemToSell.price*count);
+  }
 }

@@ -6,11 +6,16 @@ public class UIManger : MonoBehaviour
 {
   public Dictionary<InventoryName, Inventory_UI> inventoryUIByName = new Dictionary<InventoryName, Inventory_UI>();
 
-  public List<Inventory_UI> inventoryUIs;
 
+  [Header("Inventory")]
   public GameObject inventoryPanel;
+  public List<Inventory_UI> inventoryUIs;
+  [Header("Chests")]
   public GameObject chestPanel;
   public GameObject chestUI;
+  [Header("Shop")]
+  public GameObject ShopPanel;
+  public Shop_UI ShopUI;
 
 
   public List<GameObject> panels;
@@ -22,6 +27,12 @@ public class UIManger : MonoBehaviour
   private void Awake()
   {
     Initialize();
+  }
+
+  public static Inventory.Slot GetSlotFromDragged()
+  {
+    if (draggedSlot == null) return null;
+    return draggedSlot.inventory.slots[draggedSlot.slotID];
   }
 
   private void Update()
@@ -48,6 +59,32 @@ public class UIManger : MonoBehaviour
       if (!inventoryUIByName.ContainsKey(ui.inventoryName))
       {
         inventoryUIByName.Add(ui.inventoryName, ui);
+      }
+    }
+  }
+
+  public void DropToWorld()
+  {
+    if (!draggedSlot) return;
+
+    Inventory inventory = draggedSlot.inventory;
+    if (inventory == null)
+    {
+      return;
+    }
+    Inventory.Slot slot = inventory.slots[draggedSlot.slotID];
+
+    if (slot.itemData)
+    {
+      if (dragSingle)
+      {
+        GameManager.instance.playerManager.DropItem(slot.itemData);
+        inventory.Remove(draggedSlot.slotID);
+      }
+      else
+      {
+        GameManager.instance.playerManager.DropItem(slot.itemData, slot.count);
+        inventory.Remove(draggedSlot.slotID, slot.count);
       }
     }
   }
@@ -97,29 +134,9 @@ public class UIManger : MonoBehaviour
     chestPanel.SetActive(true);
   }
 
-  public void DropToWorld()
+  public void OpenShop(Shop shop)
   {
-    if (!draggedSlot) return;
-
-    Inventory inventory = draggedSlot.inventory;
-    if (inventory == null)
-    {
-      return;
-    }
-    Inventory.Slot slot = inventory.slots[draggedSlot.slotID];
-
-    if (slot.itemData)
-    {
-      if (dragSingle)
-      {
-        GameManager.instance.playerManager.DropItem(slot.itemData);
-        inventory.Remove(draggedSlot.slotID);
-      }
-      else
-      {
-        GameManager.instance.playerManager.DropItem(slot.itemData, slot.count);
-        inventory.Remove(draggedSlot.slotID, slot.count);
-      }
-    }
+    ShopUI.shop = shop;
+    ShopPanel.SetActive(true);
   }
 }

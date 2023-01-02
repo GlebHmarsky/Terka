@@ -10,6 +10,8 @@ public class Money_UI : MonoBehaviour
   void Start()
   {
     UpdateMoney();
+
+    wallet.moneyChanged += UpdateMoney;
   }
 
   public void UpdateMoney()
