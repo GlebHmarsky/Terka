@@ -6,7 +6,6 @@ public class UIManger : MonoBehaviour
 {
   public Dictionary<InventoryName, Inventory_UI> inventoryUIByName = new Dictionary<InventoryName, Inventory_UI>();
 
-
   [Header("Inventory")]
   public GameObject inventoryPanel;
   public List<Inventory_UI> inventoryUIs;
@@ -29,6 +28,7 @@ public class UIManger : MonoBehaviour
     Initialize();
   }
 
+  // TODO: move it to utils or other stuff cause it would work on every Slot_UI not only dragged or something
   public static Inventory.Slot GetSlotFromDragged()
   {
     if (draggedSlot == null) return null;
