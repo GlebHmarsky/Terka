@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class GravityBody : MonoBehaviour
 {
-  void Start()
+  public GravityAttractor planet;
+  [HideInInspector] public Rigidbody rb;
+
+  void Awake()
   {
-    
+    rb = GetComponent<Rigidbody>();
+    rb.useGravity = false;
+    rb.constraints = RigidbodyConstraints.FreezeRotation;
   }
 
-  void Update()
+  void FixedUpdate()
   {
-    
+    planet.Attract(this);
   }
 }
